@@ -5,11 +5,37 @@
         <title>portfolio</title>
         <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
         <style>
-            
+            @keyframes blink-effect { 50% { opacity: 0; } }
+
+            .head{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                background-image: url(1642648932821.png);
+                background-attachment: fixed;
+                background-repeat: no-repeat;
+                background-size: cover;
+                color: #fff;
+                width: 100%;
+            }
+            .head-text{
+                font-family: Noto Sans KR,sans-serif;
+                border-right: 0.1em solid #fff;
+                font-size: 4vw;
+                white-space: pre;
+                line-height: 1;
+                letter-spacing: .1rem;
+                padding-top: 0.2em;
+                animation: blink-effect 1s step-end infinite;
+            }
         </style>
     </head>
     <body>
-        <h1>최영우 포트폴리오할거에요</h1>
+        
+        <div class="head">
+            <h1 class="head-text">Developer 최영우의 포트폴리오입니다.</h1>
+        </div>
     </body>
     <script>
         
