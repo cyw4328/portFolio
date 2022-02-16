@@ -5,37 +5,78 @@
         <title>portfolio</title>
         <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
         <style>
-            @keyframes blink-effect { 50% { opacity: 0; } }
+            .header-class{
+                position: fixed;
+                width: 95vw;
+            }
+            .header-text{
+                float: right;
+                background: rgba(0,0,0,.6);
+                color: #fff;
+                height: 64px;
+                width: 775px;
+                border-radius: 2px 2px 30px 30px;
+            }
+            .header-li{
+                font-family: Roboto,sans-serif;
+                margin-right: 3rem;
+                padding: 1.5rem;
+                float: right;
+                border: 0;
+                cursor: pointer;
+                opacity: .6;
+                position: relative;
+                top: -15px;
+                list-style: none;
+            }
+            .header-li:hover{
+                color:  black;
+            }
 
             .head{
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 height: 100vh;
-                background-image: url(1642648932821.png);
+                background-image: url(1642648932751.png);
                 background-attachment: fixed;
                 background-repeat: no-repeat;
                 background-size: cover;
-                color: #fff;
+                color: black;
                 width: 100%;
             }
+            
             .head-text{
                 font-family: Noto Sans KR,sans-serif;
-                border-right: 0.1em solid #fff;
+                border-right: 0.1em solid black;
                 font-size: 4vw;
                 white-space: pre;
                 line-height: 1;
                 letter-spacing: .1rem;
                 padding-top: 0.2em;
-                animation: blink-effect 1s step-end infinite;
+                /* animation: blink-effect 1s step-end infinite; */
             }
+         
         </style>
     </head>
     <body>
-        
+        <div class="header-class">
+            <div>
+                <div class="header-text">
+                    <ul>
+                        <li class="header-li">Contact</li>
+                        <li class="header-li">Project</li>
+                        <li class="header-li">Skills</li>
+                        <li class="header-li">MySelf</li>
+                        <li class="header-li">Home</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
         <div class="head">
             <h1 class="head-text">Developer 최영우의 포트폴리오입니다.</h1>
         </div>
+       
     </body>
     <script>
         
