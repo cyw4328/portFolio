@@ -74,7 +74,7 @@
                 width: 100px;
                 height: 100px;
             }
-            button{
+            .head-btn{
                 width: 140px;
                 height: 80px;
                 background-color: salmon;
@@ -88,7 +88,7 @@
                 margin-left: 20px;
                 margin-right: 20px;
             }
-            button:hover{
+            .head-btn:hover{
                 background-color: black;
             }
             .btn{
@@ -97,13 +97,21 @@
                 top: 40px;
                 z-index: 10;
             }
+            .first-project-btn{
+                padding: 0.25rem 0.5rem;
+                font-size: .875rem;
+                line-height: 1.5;
+                border-radius: 0.2rem;
+                cursor: pointer;
+            }
 
         </style>
     </head>
     <body>
         <div class="btn">
-            <button id="firstProject">1st Project</button>
-            <button id="secondProject">2nd Project</button><hr/>
+            <!-- <button id="profile">MY INFO HOME</button> -->
+            <button id="firstProject" class="head-btn">1st Project</button>
+            <button id="secondProject" class="head-btn">2nd Project</button><hr/>
         </div>
         <div class="allPage">
             <div class="sidebar-myself">
@@ -155,6 +163,7 @@
             </div>
             <div class="main-myself">
                 <div>
+                    <br/>
                     <h2 style="font-size: 40px;">Education</h2>
                     <h4>(자바/스프링 기반)디지털융합 SW전문가 양성과정 (2021.09.30 ~ 2022.04.04)</h4>
                     <h4>교육기관 : 구디 아카데미</h4>
@@ -164,12 +173,48 @@
                         3. Web Back-End ( JAVA , JSP , SpringFrameWork , MYBATIS , SpringAdvence )<br/>
                         4. Web Project
                     </p>
+                </div>
+                <div class="first-Project">
                     <br/>
                     <h1 style="font-size: 40px;">1ST(SEMI) PROJECT</h1>
+                    
+                    <a href="./img/00_1조 요구사항 정의서(完).xlsx" target="_blank"><button class="first-project-btn">요구사항정의서</button></a>
+                    <a href="./img/GDJ42_1.png" target="_blank"><button class="first-project-btn">DB 설계</button></a>
+                    <a href="./img/Daily Share.pdf" target="_blank"><button class="first-project-btn">PDF</button></a>
+                    <a href="https://github.com/cyw4328/DailyShare" target="_blank"><button class="first-project-btn">GITHUB</button></a>
+
                     <h3 style="font-size: 25px;">SUBJECT</h3>
                     <p style="font-size: 20px;">Daily Share ( 개인 블로그 사이트 )</p><hr/>
                     <h3 style="font-size: 25px;">DAY</h3>
                     <p style="font-size: 20px;">2022.01.03 ~ 2022.01.21 (19일)</p><hr/>
+                    <h3 style="font-size: 25px;">Content</h3>
+                    <p style="font-size: 17px;">
+                        개인의 정보를 공유할 수 있는 블로그 사이트 입니다.<br/>
+                        <br/>
+                        회원은 개인 블로그에 게시글을 작성하여 정보를 저장할 수 있으며,<br/>
+                        업로드 된 게시글은 공개범위에 따라 전체보기인 것은 다른 이용자들이 볼 수 있으며,
+                        서로 댓글과 대댓글로 소통할 수 있습니다.<br/>
+                        <br/>
+                        메인페이지에서는 공감수가 높은 순으로 보여주는 부분과 최신 순으로 보여지는 영역이 있으며,
+                        각 카테고리 별 해당하는 개인의 메뉴안에 있는 게시글을 리스트로 보여줍니다.<br/>
+                        <br/>
+                        개인의 정보를 확인 수정 할 수 있는 마이페이지 기능과
+                        관리자 아이디 접속 시 사용 할 수 있는 관리자 기능을 분리 시켜놓았습니다.<br/>
+                        <br/>
+                        1차 프로젝트라 기본에 충실하여 프로젝트를 진행하였습니다.
+                    </p><hr/>
+                    <h3 style="font-size: 25px;">Responsibilities</h3>
+                    <p style="font-size: 17px;">
+                        <b>1) 팀장 업무 : </b><br/>프로젝트 전반적인 일정 관리 및 담당 업무 배치, 코드 관리 업무<br/>
+                        <b>2) 검색 기능 : </b><br/>사이트 전체 회원의 게시 글을 분류에 따라 검색할 수 있는 기능 구현<br/>
+                        <b>3) 리스트 불러오기 기능 : </b><br/>모든 회원의 게시 글 중 공개 범위가 전체 보기 인<br/>
+                        게시 글을 불러와 나열해주는 기능 구현<br/>
+                        <b>4) 카테고리 , 메뉴 기능 : </b><br/>대 분류 , 중 분류 , 개인 메뉴 기능 추가 및 삭제 기능 구현<br/>
+                        ( 카테고리에 속한 메뉴에 있는 게시 글을 불러오거나 블라인드 처리 )<br/>
+                        <b>5) 신고 기능 : </b><br/>게시 글을 신고 항목 별로 나누어 신고 처리 할 수 있는 기능 구현<br/>
+                        <b>6) MY PAGE 기능 : </b><br/>내 정보를 수정 기능 , 구독 관계 수정 기능 , 알림 기능 구현<br/>
+                        내가 적은 게시 글 및 댓글 관리 기능 구현<br/>
+                    </p><hr/>
                     <h3 style="font-size: 25px;">technology to use</h3>
                     <p style="font-size: 20px;">
                         1) 구현 언어 : JAVA , SQL , HTML , CSS , JAVA-SCRIPT , JSP<br/>
@@ -197,35 +242,20 @@
                         <img src="./img/myBatis.PNG" class="Front-skill"/>
                         <img src="./img/Spring.PNG" class="Front-skill"/>
                         <img src="./img/Tomcat.PNG" class="Front-skill"/>
-                    </p><hr/>
-                    <h3 style="font-size: 25px;">Content</h3>
-                    <p>
-                        개인의 정보를 공유할 수 있는 블로그 사이트 입니다.<br/>
-                        <br/>
-                        회원은 개인 블로그에 게시글을 작성하여 정보를 저장할 수 있으며,<br/>
-                        업로드 된 게시글은 공개범위에 따라 전체보기인 것은 다른 이용자들이 볼 수 있으며,<br/>
-                        서로 댓글과 대댓글로 소통할 수 있습니다.<br/>
-                        <br/>
-                        메인페이지에서는 공감수가 높은 순으로 보여주는 부분과 최신 순으로 보여지는 영역이 있으며,<br/>
-                        각 카테고리 별 해당하는 개인의 메뉴안에 있는 게시글을 리스트로 보여줍니다.<br/>
-                        <br/>
-                        개인의 정보를 확인 수정 할 수 있는 마이페이지 기능과<br/>
-                        관리자 아이디 접속 시 사용 할 수 있는 관리자 기능을 분리 시켜놓았습니다.<br/>
-                        <br/>
-                        1차 프로젝트라 기본에 충실하여 프로젝트를 진행하였습니다.
                     </p>
+                    
                 </div>
             </div>
         </div>
     </body>
     <script>
         $('#firstProject').click(function(){
-            $('.main-myself').css("display","block");
+            $('.first-Project').css("display","block");
         });
 
         $('#secondProject').click(function(){
             alert('프로젝트 준비중입니다.');
-            $('.main-myself').css("display","none");
+            $('.first-Project').css("display","none");
         });
 
     </script>
