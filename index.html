@@ -13,7 +13,7 @@
                 -webkit-font-smoothing: antialiased;
             }
             .allPage{
-                background: #6667AB;
+                background: white;
                 max-width: 960px;
                 margin: 0 auto;
                 margin-top: 30px;
@@ -23,7 +23,7 @@
                 box-shadow: 0px 2px 4px rgb(0 0 0 / 10%);
             }
             .sidebar-myself{
-                background: lightblue;
+                background: lightgray;
                 position: absolute;
                 left: 0;
                 width: 240px;
@@ -35,6 +35,7 @@
                 background: #fff;
                 padding: 60px;
                 padding-right: 300px;
+                margin-left: 200px;
             }
 
             .myself-profile{
@@ -43,7 +44,7 @@
                 text-align: center;
                 background-color: #5d5e74;
             }
-            img{
+            .profile-img{
                 border-radius: 50%;
                 object-fit: cover;
                 width: 180px;
@@ -69,6 +70,10 @@
                 color: black;
                 padding: 20px;
             }
+            .Front-skill{
+                width: 100px;
+                height: 100px;
+            }
          
         </style>
     </head>
@@ -77,7 +82,7 @@
             <div class="sidebar-myself">
                 <div class="myself-profile">
                     <div class="profile-content">
-                        <img src="KakaoTalk_20220217_101831886.jpg"/>
+                        <img src="./img/KakaoTalk_20220217_101831886.jpg" class="profile-img"/>
                         <h1>최영우</h1>
                         <h3>신입 개발자</h3>
                     </div>
@@ -122,7 +127,33 @@
                 </div>
             </div>
             <div class="main-myself">
+                <div>
+                    <h2 style="font-size: 40px;">Education</h2>
+                    <h4>(자바/스프링 기반)디지털융합 SW전문가 양성과정</h4>
+                    <h4>교육기관 : 구디 아카데미</h4>
+                    <hr/>
+                    <h3 style="font-size: 30px;">SKILL</h3>
+                    <p style="font-size: 20px;">♥ Web Front-End<br/><br/>
+                        <img src="./img/HTML 5.PNG" class="Front-skill"/>
+                        <img src="./img/CSS 3.PNG" class="Front-skill"/>
+                        <img src="./img/JS.PNG" class="Front-skill"/>
+                        <img src="./img/J-Query.PNG" class="Front-skill"/>
+                        <img src="./img/reactJS.PNG" class="Front-skill"/>
 
+                    </p>
+
+                    <p style="font-size: 20px;">♥ DataBase <br/><br/>
+                        <img src="./img/DBever.PNG" class="Front-skill"/>
+                        <img src="./img/Maria DB.PNG" class="Front-skill"/>
+                    </p>
+                    <p style="font-size: 20px;">
+                        ♥ Web Back-End<br/><br/>
+                        <img src="./img/java.PNG" class="Front-skill"/>
+                        <img src="./img/myBatis.PNG" class="Front-skill"/>
+                        <img src="./img/Spring.PNG" class="Front-skill"/>
+                        <img src="./img/Tomcat.PNG" class="Front-skill"/>
+                    </p>
+                </div>
             </div>
         </div>
     </body>
