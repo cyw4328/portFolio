@@ -74,10 +74,37 @@
                 width: 100px;
                 height: 100px;
             }
-         
+            button{
+                width: 140px;
+                height: 80px;
+                background-color: salmon;
+                color: white;
+                padding: 2em 3em;
+                border: none;
+                border-radius: 40px;
+                text-transform: uppercase;
+                outline: none;
+                cursor: pointer;
+                margin-left: 20px;
+                margin-right: 20px;
+            }
+            button:hover{
+                background-color: black;
+            }
+            .btn{
+                position: absolute;
+                left: 550;
+                top: 40px;
+                z-index: 10;
+            }
+
         </style>
     </head>
     <body>
+        <div class="btn">
+            <button id="firstProject">1st Project</button>
+            <button id="secondProject">2nd Project</button><hr/>
+        </div>
         <div class="allPage">
             <div class="sidebar-myself">
                 <div class="myself-profile">
@@ -122,24 +149,42 @@
                         <h4 class="degree">우송정보대학</h4>
                         <h5 class="meta">세무정보과</h5>
                             <div class="time">2012.03 ~ 2014.02</div>
-                            <div class="time">학점 : 3.32 / 4.2</div>
+                            <div class="time">학점 : 3.32 / 4.5</div>
                     </div>
                 </div>
             </div>
             <div class="main-myself">
                 <div>
                     <h2 style="font-size: 40px;">Education</h2>
-                    <h4>(자바/스프링 기반)디지털융합 SW전문가 양성과정</h4>
+                    <h4>(자바/스프링 기반)디지털융합 SW전문가 양성과정 (2021.09.30 ~ 2022.04.04)</h4>
                     <h4>교육기관 : 구디 아카데미</h4>
-                    <hr/>
-                    <h3 style="font-size: 30px;">SKILL</h3>
+                    <p>
+                        1. Web Front-End ( HTML , CSS , JAVA-SCRIPT , J-QUERY , JSP , ES6 , REACT )<br/>
+                        2. DataBase ( MARIA DB )<br/>
+                        3. Web Back-End ( JAVA , JSP , SpringFrameWork , MYBATIS , SpringAdvence )<br/>
+                        4. Web Project
+                    </p>
+                    <br/>
+                    <h1 style="font-size: 40px;">1ST(SEMI) PROJECT</h1>
+                    <h3 style="font-size: 25px;">SUBJECT</h3>
+                    <p style="font-size: 20px;">Daily Share ( 개인 블로그 사이트 )</p><hr/>
+                    <h3 style="font-size: 25px;">DAY</h3>
+                    <p style="font-size: 20px;">2022.01.03 ~ 2022.01.21 (19일)</p><hr/>
+                    <h3 style="font-size: 25px;">technology to use</h3>
+                    <p style="font-size: 20px;">
+                        1) 구현 언어 : JAVA , SQL , HTML , CSS , JAVA-SCRIPT , JSP<br/>
+                        2) 사용 기술 : J-Query , Ajax , JSON , XML<br/>
+                        3) 프레임 워크 : Spring Framework , Mybatis<br/>
+                        4) 시스템 : github<br/>
+                        5) 사용 도구 : Maria DB , Source Tree<br/>
+                        6) WAS : Apache tomcat
+                    </p><hr/>
+                    <h3 style="font-size: 25px;">SKILL</h3>
                     <p style="font-size: 20px;">♥ Web Front-End<br/><br/>
                         <img src="./img/HTML 5.PNG" class="Front-skill"/>
                         <img src="./img/CSS 3.PNG" class="Front-skill"/>
                         <img src="./img/JS.PNG" class="Front-skill"/>
                         <img src="./img/J-Query.PNG" class="Front-skill"/>
-                        <img src="./img/reactJS.PNG" class="Front-skill"/>
-
                     </p>
 
                     <p style="font-size: 20px;">♥ DataBase <br/><br/>
@@ -152,12 +197,36 @@
                         <img src="./img/myBatis.PNG" class="Front-skill"/>
                         <img src="./img/Spring.PNG" class="Front-skill"/>
                         <img src="./img/Tomcat.PNG" class="Front-skill"/>
+                    </p><hr/>
+                    <h3 style="font-size: 25px;">Content</h3>
+                    <p>
+                        개인의 정보를 공유할 수 있는 블로그 사이트 입니다.<br/>
+                        <br/>
+                        회원은 개인 블로그에 게시글을 작성하여 정보를 저장할 수 있으며,<br/>
+                        업로드 된 게시글은 공개범위에 따라 전체보기인 것은 다른 이용자들이 볼 수 있으며,<br/>
+                        서로 댓글과 대댓글로 소통할 수 있습니다.<br/>
+                        <br/>
+                        메인페이지에서는 공감수가 높은 순으로 보여주는 부분과 최신 순으로 보여지는 영역이 있으며,<br/>
+                        각 카테고리 별 해당하는 개인의 메뉴안에 있는 게시글을 리스트로 보여줍니다.<br/>
+                        <br/>
+                        개인의 정보를 확인 수정 할 수 있는 마이페이지 기능과<br/>
+                        관리자 아이디 접속 시 사용 할 수 있는 관리자 기능을 분리 시켜놓았습니다.<br/>
+                        <br/>
+                        1차 프로젝트라 기본에 충실하여 프로젝트를 진행하였습니다.
                     </p>
                 </div>
             </div>
         </div>
     </body>
     <script>
+        $('#firstProject').click(function(){
+            $('.main-myself').css("display","block");
+        });
+
+        $('#secondProject').click(function(){
+            alert('프로젝트 준비중입니다.');
+            $('.main-myself').css("display","none");
+        });
 
     </script>
 </html>
