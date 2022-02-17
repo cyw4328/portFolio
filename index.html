@@ -2,83 +2,131 @@
     <head>
         <meta charset="UTF-8">
         <link rel="icon" href="./favicon.ico">
-        <title>portfolio</title>
+        <title>최영우(Profile)</title>
         <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
         <style>
-            .header-class{
-                position: fixed;
-                width: 95vw;
+            body{
+                font-family: 'Roboto', sans-serif;
+                color: black;
+                background: #f5f5f5;
+                font-size: 14px;
+                -webkit-font-smoothing: antialiased;
             }
-            .header-text{
-                float: right;
-                background: rgba(0,0,0,.6);
-                color: #fff;
-                height: 64px;
-                width: 775px;
-                border-radius: 2px 2px 30px 30px;
-            }
-            .header-li{
-                font-family: Roboto,sans-serif;
-                margin-right: 3rem;
-                padding: 1.5rem;
-                float: right;
-                border: 0;
-                cursor: pointer;
-                opacity: .6;
+            .allPage{
+                background: #6667AB;
+                max-width: 960px;
+                margin: 0 auto;
+                margin-top: 30px;
                 position: relative;
-                top: -15px;
-                list-style: none;
+                -webkit-box-shadow: 0px 2px 4px rgb(0 0 0 / 10%);
+                -moz-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+                box-shadow: 0px 2px 4px rgb(0 0 0 / 10%);
             }
-            .header-li:hover{
-                color:  black;
+            .sidebar-myself{
+                background: lightblue;
+                position: absolute;
+                left: 0;
+                width: 240px;
+                height: 100%;
+                min-height: 800px;
+                color: #fff;
+            }
+            .main-myself{
+                background: #fff;
+                padding: 60px;
+                padding-right: 300px;
             }
 
-            .head{
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                height: 100vh;
-                background-image: url(1642648932751.png);
-                background-attachment: fixed;
-                background-repeat: no-repeat;
-                background-size: cover;
-                color: black;
-                width: 100%;
+            .myself-profile{
+                width:  240px;
+                height: 400px;
+                text-align: center;
+                background-color: #5d5e74;
             }
-            
-            .head-text{
-                font-family: Noto Sans KR,sans-serif;
-                border-right: 0.1em solid black;
-                font-size: 4vw;
-                white-space: pre;
-                line-height: 1;
-                letter-spacing: .1rem;
-                padding-top: 0.2em;
-                /* animation: blink-effect 1s step-end infinite; */
+            img{
+                border-radius: 50%;
+                object-fit: cover;
+                width: 180px;
+                height: 214px;
+            }
+            .sidebar-myself .myself-profile{
+                margin-bottom: 15px;
+            }
+            .profile-content{
+                position: absolute;
+                left: 30px;
+                top: 30px;
+            }
+            li{
+                list-style: none;
+                margin-left: -20px;
+            }
+            a:link { color: red; text-decoration: none;}
+            a:visited { color: black; text-decoration: none;}
+            a:hover { color: grey; text-decoration: underline;}
+
+            .myself-education{
+                color: black;
+                padding: 20px;
             }
          
         </style>
     </head>
     <body>
-        <div class="header-class">
-            <div>
-                <div class="header-text">
-                    <ul>
-                        <li class="header-li">Contact</li>
-                        <li class="header-li">Project</li>
-                        <li class="header-li">Skills</li>
-                        <li class="header-li">MySelf</li>
-                        <li class="header-li">Home</li>
+        <div class="allPage">
+            <div class="sidebar-myself">
+                <div class="myself-profile">
+                    <div class="profile-content">
+                        <img src="KakaoTalk_20220217_101831886.jpg"/>
+                        <h1>최영우</h1>
+                        <h3>신입 개발자</h3>
+                    </div>
+                </div>
+                <div class="myself-info" style="color: black;">
+                    <ul style="margin-top: 36px;">
+                        <li class="email">
+                            <b>E-Mail</b>
+                            <br/>cyw4328@naver.com
+                        </li>
+                        <br/>
+                        <li class="phone">
+                            <b>PHONE</b>
+                            <br/>010-2669-4328
+                        </li>
+                        <br/>
+                        <li class="blog">
+                            <b>BLOG</b>
+                            <br/>
+                            <a href="https://blog.naver.com/cyw4328">
+                                https://blog.naver.com/cyw4328
+                            </a>
+                        </li>
+                        <br/>
+                        <li class="github">
+                            <b>GITHUB</b>
+                            <br/>
+                            <a href="https://github.com/cyw4328">
+                                https://github.com/cyw4328
+                            </a>
+                        </li>
                     </ul>
                 </div>
+                <div class="myself-education">
+                    <h2 class="container-block-title">Education</h2>
+                    <div class="item">
+                        <h4 class="degree">우송정보대학</h4>
+                        <h5 class="meta">세무정보과</h5>
+                            <div class="time">2012.03 ~ 2014.02</div>
+                            <div class="time">학점 : 3.32 / 4.2</div>
+                    </div>
+                </div>
+            </div>
+            <div class="main-myself">
+
             </div>
         </div>
-        <div class="head">
-            <h1 class="head-text">Developer 최영우의 포트폴리오입니다.</h1>
-        </div>
-       
     </body>
     <script>
-        
+
     </script>
 </html>
