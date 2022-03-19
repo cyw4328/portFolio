@@ -104,6 +104,9 @@
                 border-radius: 0.2rem;
                 cursor: pointer;
             }
+            .final-Project{
+                display: none;
+            }
 
         </style>
     </head>
@@ -247,18 +250,79 @@
                     </p>
                     
                 </div>
+                <div class="final-Project">
+                    <br/>
+                    <hr/>
+                    <h1 style="font-size: 40px;">2nd(FINAL) PROJECT</h1>
+                    
+                    <a href="./img/00_1조 요구사항 정의서.xlsx" target="_blank"><button class="final-project-btn">요구사항정의서</button></a>
+                    <a href="./img/1조_ERD (1).png" target="_blank"><button class="final-project-btn">DB 설계</button></a>
+                    <a href="#" target="_blank"><button class="final-project-btn">PDF</button></a>
+                    <a href="https://github.com/cyw4328/PrettyDog" target="_blank"><button class="final-project-btn">GITHUB</button></a>
+                    <br/>
+                    <hr/>
+                    <h3 style="font-size: 25px;">SUBJECT</h3>
+                    <p style="font-size: 20px;">PrettyDog ( 애견미용 예약 사이트 )</p><hr/>
+                    <h3 style="font-size: 25px;">DAY</h3>
+                    <p style="font-size: 20px;">2022.02.21 ~ 2022.03.25 ( 33일 )</p><hr/>
+                    <h3 style="font-size: 25px;">Content</h3>
+                    <p style="font-size: 17px;">
+                        일반회원과 업주회원 가입
+                    </p><hr/>
+                    <h3 style="font-size: 25px;">Responsibilities</h3>
+                    <p style="font-size: 17px;">
+                        <b>1) 팀장 업무 : </b><br/>프로젝트 전반적인 일정 관리 및 담당 업무 배치, 코드 관리 업무, 전체적인 설계<br/>
+                        <b>2) 포인트 업무 : </b><br/>예약 상태에 따른 포인트 이동 기능( 충전 , 환전 , 결제)<br/>
+                        <b>3) 마이 페이지 업무 : </b><br/>회원(일반,업주)의 포인트 상태 변경 , 게시글 관리 , 댓글 관리 , 알림 , 관심매장 추가/해제 기능 , 예약 상태 변경 기능<br/>
+                        <b>4) 관리자 업무 : </b><br/>사이트에서 사용하는 신고 설정 , 신고 처리 , 커뮤니티 카테고리 설정 , 추가 서비스 항목 설정<br/>
+                        <b>5) 예약 업무 : </b><br/>예약 상태 변경 기능<br/>
+                        <b>6 로그인 / 아이디,비밀번호 찾기 업무 : </b><br/>암호화를 이용한 기능<br/>
+    
+                    </p><hr/>
+                    <h3 style="font-size: 25px;">technology to use</h3>
+                    <p style="font-size: 20px;">
+                        1) 구현 언어 : JAVA , SQL , HTML , CSS , JAVA-SCRIPT , JSP<br/>
+                        2) 사용 기술 : J-Query , Ajax , JSON , XML<br/>
+                        3) 프레임 워크 : Spring Framework , Mybatis<br/>
+                        4) 시스템 : github<br/>
+                        5) 사용 도구 : Maria DB , Source Tree<br/>
+                        6) WAS : Apache tomcat
+                    </p><hr/>
+                    <h3 style="font-size: 25px;">SKILL</h3>
+                    <p style="font-size: 20px;">♥ Web Front-End<br/><br/>
+                        <img src="./img/HTML 5.PNG" class="Front-skill"/>
+                        <img src="./img/CSS 3.PNG" class="Front-skill"/>
+                        <img src="./img/JS.PNG" class="Front-skill"/>
+                        <img src="./img/J-Query.PNG" class="Front-skill"/>
+                    </p>
+    
+                    <p style="font-size: 20px;">♥ DataBase <br/><br/>
+                        <img src="./img/DBever.PNG" class="Front-skill"/>
+                        <img src="./img/Maria DB.PNG" class="Front-skill"/>
+                    </p>
+                    <p style="font-size: 20px;">
+                        ♥ Web Back-End<br/><br/>
+                        <img src="./img/java.PNG" class="Front-skill"/>
+                        <img src="./img/myBatis.PNG" class="Front-skill"/>
+                        <img src="./img/Spring.PNG" class="Front-skill"/>
+                        <img src="./img/Tomcat.PNG" class="Front-skill"/>
+                    </p>
+                    
+                </div>
             </div>
+        </div>
         </div>
         <footer style="text-align: center;"><hr/>Designed by CHOI YOUNG WOO</footer>
     </body>
     <script>
         $('#firstProject').click(function(){
             $('.first-Project').css("display","block");
+            $('.final-Project').css("display","none");
         });
 
         $('#secondProject').click(function(){
-            alert('프로젝트 준비중입니다.');
             $('.first-Project').css("display","none");
+            $('.final-Project').css("display","block");
         });
 
     </script>
