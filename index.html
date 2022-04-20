@@ -115,6 +115,10 @@
                 cursor: pointer;
             }
 
+            .textBtn:hover{
+                cursor: pointer;
+                background-color: wheat;
+            }
         </style>
     </head>
     <body>
@@ -185,6 +189,7 @@
                         3. Web Back-End ( JAVA , JSP , SpringFrameWork , MYBATIS , SpringAdvence )<br/>
                         4. Web Project
                     </p>
+                    <button class="textBtn" onclick="text()" style="border: 0; background-color: black; color: white; width: 150px; height: 30px;"> 최영우의 수강후기보기 </button>
                 </div>
                 <div class="first-Project">
                     <br/>
@@ -345,6 +350,10 @@
             $('.first-Project').css("display","none");
             $('.final-Project').css("display","block");
         });
+
+        function text(){
+            window.location.href="https://www.gdu.co.kr/community/community_030100.html?bmain=view&uid=111&mode=25";
+        }
 
     </script>
 </html>
