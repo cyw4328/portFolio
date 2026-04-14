@@ -418,6 +418,109 @@
         }
 
         /* ──────────── PROJECTS ──────────── */
+        /* EXPERIENCE */
+        .exp-card {
+            border: 1px solid var(--border2);
+            background: var(--card);
+            padding: 40px 44px;
+            position: relative;
+            overflow: hidden;
+        }
+        .exp-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 3px; height: 100%;
+            background: linear-gradient(to bottom, var(--accent), transparent);
+        }
+        .exp-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+        .exp-company {
+            font-family: var(--serif);
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+        .exp-period {
+            font-family: var(--mono);
+            font-size: 0.75rem;
+            color: var(--accent);
+            background: rgba(201,169,110,0.08);
+            border: 1px solid rgba(201,169,110,0.2);
+            padding: 5px 14px;
+            letter-spacing: 0.08em;
+            white-space: nowrap;
+            align-self: center;
+        }
+        .exp-meta {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+        }
+        .exp-badge {
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            color: var(--text2);
+            border: 1px solid var(--border2);
+            padding: 4px 12px;
+            letter-spacing: 0.08em;
+        }
+        .exp-badge-dur {
+            color: var(--accent);
+            border-color: rgba(201,169,110,0.3);
+        }
+        .exp-divider {
+            width: 100%;
+            height: 1px;
+            background: var(--border);
+            margin-bottom: 24px;
+        }
+        .exp-desc {
+            margin-bottom: 28px;
+        }
+        .exp-desc p {
+            font-size: 0.9rem;
+            color: var(--text2);
+            line-height: 1.85;
+            margin-bottom: 14px;
+        }
+        .exp-desc ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .exp-desc ul li {
+            font-size: 0.875rem;
+            color: var(--text2);
+            padding-left: 20px;
+            position: relative;
+            line-height: 1.7;
+        }
+        .exp-desc ul li::before {
+            content: '─ ';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-size: 0.7rem;
+            top: 4px;
+        }
+        .exp-stack { display: flex; flex-wrap: wrap; gap: 8px; }
+
+        @media (max-width: 640px) {
+            .exp-card { padding: 22px 16px; }
+            .exp-company { font-size: 1.2rem; }
+            .exp-top { flex-direction: column; gap: 10px; }
+            .exp-period { align-self: flex-start; }
+        }
+
         .projects-list {
             display: flex;
             flex-direction: column;
@@ -742,20 +845,130 @@
         .reveal-delay-2 { transition-delay: 0.2s; }
         .reveal-delay-3 { transition-delay: 0.3s; }
 
-        /* ──────────── RESPONSIVE ──────────── */
-        @media (max-width: 768px) {
+        /* HAMBURGER */
+        .nav-hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            width: 32px;
+            height: 32px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+        }
+        .nav-hamburger span {
+            display: block;
+            width: 100%;
+            height: 1px;
+            background: var(--text2);
+            transition: all 0.3s var(--ease);
+            transform-origin: center;
+        }
+        .nav-hamburger.active span:nth-child(1) { transform: translateY(6px) rotate(45deg); background: var(--accent); }
+        .nav-hamburger.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+        .nav-hamburger.active span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); background: var(--accent); }
+
+        .nav-mobile-menu {
+            position: fixed;
+            top: var(--nav-h);
+            left: 0; right: 0;
+            background: rgba(6, 6, 6, 0.97);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            padding: 0 24px;
+            display: flex;
+            flex-direction: column;
+            transform: translateY(-110%);
+            transition: transform 0.4s var(--ease);
+            z-index: 998;
+            border-bottom: 1px solid var(--border2);
+        }
+        .nav-mobile-menu.open { transform: translateY(0); }
+        .nav-mobile-menu a {
+            display: block;
+            color: var(--text2);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 400;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            padding: 18px 0;
+            border-bottom: 1px solid var(--border);
+            transition: color 0.2s, padding-left 0.2s;
+        }
+        .nav-mobile-menu a:last-child { border-bottom: none; }
+        .nav-mobile-menu a:hover { color: var(--accent); padding-left: 6px; }
+
+        /* RESPONSIVE */
+        @media (max-width: 640px) {
             .nav-inner { padding: 0 20px; }
-            .nav-links { gap: 24px; }
-            .nav-links a { font-size: 0.72rem; }
-            .container { padding: 0 20px; }
-            section { padding: 80px 0 60px; }
-            .about-grid { grid-template-columns: 1fr; gap: 40px; }
-            .profile-img-box { max-width: 240px; }
-            .project-card { padding: 24px 20px; }
-            .edu-section-header { padding: 20px; }
-            .edu-section-body { padding: 20px; }
-            .sub-project-header { padding: 16px 20px; }
-            .sub-project-body { padding: 16px 20px; }
+            .nav-links { display: none; }
+            .nav-hamburger { display: flex; }
+
+            .home-content { padding: 0 20px; }
+            .home-label { font-size: 0.68rem; letter-spacing: 0.18em; margin-bottom: 22px; }
+            .home-title { font-size: clamp(1.7rem, 8vw, 2.4rem); }
+            .home-sub { font-size: 0.9rem; margin-top: 14px; }
+            .home-links { flex-direction: column; align-items: center; gap: 12px; }
+            .btn-link { width: 100%; max-width: 280px; justify-content: center; padding: 13px 24px; }
+            .scroll-hint { display: none; }
+
+            .container { padding: 0 16px; }
+            section { padding: 72px 0 56px; }
+
+            .section-header { margin-bottom: 40px; gap: 16px; }
+            .section-title { font-size: 2rem; }
+            .section-line { display: none; }
+
+            .about-grid { grid-template-columns: 1fr; gap: 32px; }
+            .profile-wrap { display: flex; justify-content: center; }
+            .profile-img-box { width: 180px; height: 240px; }
+            .about-name { font-size: 1.8rem; }
+            .about-role { margin-bottom: 24px; }
+            .contact-list { gap: 14px; }
+            .contact-icon { width: 32px; height: 32px; font-size: 0.75rem; }
+
+            .project-card { padding: 20px 16px; }
+            .project-header { flex-direction: column; gap: 10px; }
+            .project-period { font-size: 0.68rem; align-self: flex-start; }
+            .project-title { font-size: 1rem; }
+            .project-body { font-size: 0.83rem; }
+            .tag { font-size: 0.65rem; padding: 3px 8px; }
+            .proj-link { font-size: 0.7rem; padding: 5px 12px; }
+
+            .edu-section-card { margin-bottom: 24px; }
+            .edu-section-header { flex-direction: column; align-items: flex-start; gap: 6px; padding: 16px; }
+            .edu-section-title { font-size: 1.05rem; }
+            .edu-section-period { font-size: 0.68rem; }
+            .edu-section-body { padding: 16px; }
+            .edu-curriculum-list li { font-size: 0.82rem; }
+            .edu-btn-group { gap: 8px; margin-top: 16px; }
+            .edu-btn { font-size: 0.65rem; padding: 7px 12px; }
+
+            .sub-project { margin-bottom: 16px; }
+            .sub-project-header { flex-direction: column; align-items: flex-start; gap: 4px; padding: 14px 16px; }
+            .sub-project-title { font-size: 0.88rem; }
+            .sub-project-body { padding: 14px 16px; }
+            .sub-project-body p { font-size: 0.82rem; }
+            .sub-project-body ul li { font-size: 0.82rem; }
+            .sub-section-label { font-size: 0.64rem; }
+            .skill-icons img { width: 44px; height: 44px; }
+            .skill-group-label { font-size: 0.65rem; }
+        }
+
+        @media (min-width: 641px) and (max-width: 900px) {
+            .nav-inner { padding: 0 24px; }
+            .nav-links { gap: 22px; }
+            .nav-links a { font-size: 0.73rem; }
+            .container { padding: 0 24px; }
+            section { padding: 90px 0 70px; }
+            .about-grid { grid-template-columns: 220px 1fr; gap: 44px; }
+            .project-card { padding: 28px 24px; }
+            .project-header { flex-wrap: wrap; }
+            .edu-section-header { flex-wrap: wrap; }
+            .sub-project-header { flex-wrap: wrap; }
         }
     </style>
 </head>
@@ -768,17 +981,29 @@
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#education">Education</a></li>
         </ul>
+        <button class="nav-hamburger" id="hamburger" aria-label="메뉴 열기">
+            <span></span><span></span><span></span>
+        </button>
     </div>
 </nav>
+<!-- 모바일 메뉴 -->
+<div class="nav-mobile-menu" id="mobile-menu">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#education">Education</a>
+</div>
 
 <!-- ─── HOME ─── -->
 <section id="home">
     <div class="home-grid"></div>
     <div class="home-content">
-        <p class="home-label">Backend Developer · Full Stack</p>
+        <p class="home-label">Developer · Full Stack</p>
         <h1 class="home-title">
             <span id="typed-text"></span><span class="cursor"></span>
         </h1>
@@ -817,14 +1042,14 @@
             </div>
             <div class="about-info">
                 <h3 class="about-name reveal">최영우</h3>
-                <p class="about-role reveal reveal-delay-1">Backend Developer</p>
+                <p class="about-role reveal reveal-delay-1">Developer</p>
                 <ul class="contact-list">
                     <li class="contact-item reveal reveal-delay-1">
                         <div class="contact-icon">✉</div>
                         <div>
                             <div class="contact-label">E-Mail</div>
                             <div class="contact-value">
-                                <a href="mailto:cyw4328@naver.com">cyw4328@naver.com</a>
+                                <a href="mailto:cyw4328@naver.com">cyw4328@gmail.com</a>
                             </div>
                         </div>
                     </li>
@@ -835,15 +1060,15 @@
                             <div class="contact-value">010-2669-4328</div>
                         </div>
                     </li>
-                    <li class="contact-item reveal reveal-delay-2">
-                        <div class="contact-icon">◈</div>
-                        <div>
-                            <div class="contact-label">Blog</div>
-                            <div class="contact-value">
-                                <a href="https://blog.naver.com/cyw4328" target="_blank">blog.naver.com/cyw4328</a>
-                            </div>
-                        </div>
-                    </li>
+<!--                    <li class="contact-item reveal reveal-delay-2">-->
+<!--                        <div class="contact-icon">◈</div>-->
+<!--                        <div>-->
+<!--                            <div class="contact-label">Blog</div>-->
+<!--                            <div class="contact-value">-->
+<!--                                <a href="https://blog.naver.com/cyw4328" target="_blank">blog.naver.com/cyw4328</a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </li>-->
                     <li class="contact-item reveal reveal-delay-3">
                         <div class="contact-icon">⌥</div>
                         <div>
@@ -859,17 +1084,71 @@
                     <div class="edu-dept">세무정보과</div>
                     <div class="edu-period">2012.03 — 2014.02</div>
                 </div>
+                <div class="edu-card reveal reveal-delay-2">
+                    <div class="edu-school">한국방송통신대학</div>
+                    <div class="edu-dept">컴퓨터과학과</div>
+                    <div class="edu-period">2026.03 — 재학중 </div>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
+
+<!-- ─── EXPERIENCE ─── -->
+<section id="experience">
+    <div class="container">
+        <div class="section-header reveal">
+            <div>
+                <span class="section-num">02</span>
+                <h2 class="section-title">Experience</h2>
+            </div>
+            <div class="section-line"></div>
+        </div>
+
+        <div class="exp-card reveal">
+            <div class="exp-top">
+                <div class="exp-company">(주)놀라운사람들</div>
+                <span class="exp-period">2022.05 — 2026.03</span>
+            </div>
+            <div class="exp-meta">
+                <span class="exp-badge">개발팀</span>
+                <span class="exp-badge">대리</span>
+                <span class="exp-badge exp-badge-dur">3년 10개월</span>
+            </div>
+            <div class="exp-divider"></div>
+            <div class="exp-desc">
+                <p>개발팀 소속으로 다양한 외부 프로젝트에 투입되어 백엔드/프론트엔드 개발, 유지보수, 운영 대응을 수행했습니다. SI/SM 환경에서 Java, Spring, .NET, Vue.js, React Native 등 다양한 기술 스택을 활용하며 실무 역량을 쌓았습니다.</p>
+                <ul>
+                    <li>ERP, SNS, 리워드 앱, 회의실 관리 앱 등 다양한 도메인 프로젝트 참여</li>
+                    <li>GitLab / Jenkins 기반 CI/CD 자동화 및 서버 운영 관리</li>
+                    <li>보안 취약점 조치, DB 표준화, SAP 연계 등 고도화 업무 수행</li>
+                    <li>Flutter 기반 앱 스토어 출시(구글/애플) 경험 보유</li>
+                </ul>
+            </div>
+            <div class="exp-stack">
+                <span class="tag">Java</span>
+                <span class="tag">Spring Boot</span>
+                <span class="tag">.NET / C#</span>
+                <span class="tag">Vue.js</span>
+                <span class="tag">React Native</span>
+                <span class="tag">Flutter</span>
+                <span class="tag">Oracle</span>
+                <span class="tag">MariaDB</span>
+                <span class="tag">GitLab</span>
+                <span class="tag">Jenkins</span>
+                <span class="tag">Linux</span>
+            </div>
+        </div>
+
+    </div>
+</section>
 <!-- ─── PROJECTS ─── -->
 <section id="projects">
     <div class="container">
         <div class="section-header reveal">
             <div>
-                <span class="section-num">02</span>
+                <span class="section-num">03</span>
                 <h2 class="section-title">Projects</h2>
             </div>
             <div class="section-line"></div>
@@ -881,7 +1160,7 @@
             <div class="project-card reveal">
                 <div class="project-header">
                     <div class="project-title">농수산물 온라인 도매시장 플랫폼 구축 – 표준화팀</div>
-                    <span class="project-period">2025.10 — 진행중</span>
+                    <span class="project-period">2025.10 — 2026.03</span>
                 </div>
                 <div class="project-body">
                     <p>Database 표준화(명명 규칙/도메인/공통 코드/테이블 정의) 기준 수립 및 적용 지원을 수행했습니다.</p>
@@ -1093,7 +1372,7 @@
     <div class="container">
         <div class="section-header reveal">
             <div>
-                <span class="section-num">03</span>
+                <span class="section-num">04</span>
                 <h2 class="section-title">Education</h2>
             </div>
             <div class="section-line"></div>
@@ -1236,7 +1515,7 @@
 
 <!-- ─── FOOTER ─── -->
 <footer>
-    <p>© 2025 Choi Young Woo · <a href="mailto:cyw4328@naver.com">cyw4328@naver.com</a></p>
+    <p>© Choi Young Woo · <a href="mailto:cyw4328@gmail.com">cyw4328@gmail.com</a></p>
 </footer>
 
 <script>
@@ -1244,6 +1523,22 @@
     const nav = document.getElementById('main-nav');
     window.addEventListener('scroll', () => {
         nav.classList.toggle('scrolled', window.scrollY > 30);
+    });
+
+    /* ── Hamburger menu ── */
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    hamburger.addEventListener('click', () => {
+        const isOpen = mobileMenu.classList.toggle('open');
+        hamburger.classList.toggle('active', isOpen);
+        document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+    mobileMenu.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+            mobileMenu.classList.remove('open');
+            hamburger.classList.remove('active');
+            document.body.style.overflow = '';
+        });
     });
 
     /* ── Typing animation ── */
