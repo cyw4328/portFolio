@@ -880,12 +880,18 @@
             padding: 0 24px;
             display: flex;
             flex-direction: column;
-            transform: translateY(-110%);
-            transition: transform 0.4s var(--ease);
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height 0.4s var(--ease), opacity 0.3s var(--ease);
             z-index: 998;
-            border-bottom: 1px solid var(--border2);
+            border-bottom: 1px solid transparent;
         }
-        .nav-mobile-menu.open { transform: translateY(0); }
+        .nav-mobile-menu.open {
+            max-height: 400px;
+            opacity: 1;
+            border-bottom-color: var(--border2);
+        }
         .nav-mobile-menu a {
             display: block;
             color: var(--text2);
@@ -1013,7 +1019,7 @@
         <div class="home-divider" id="home-divider"></div>
         <div class="home-links" id="home-links">
             <a href="https://github.com/cyw4328" target="_blank" class="btn-link btn-primary">GitHub</a>
-            <a href="https://blog.naver.com/cyw4328" target="_blank" class="btn-link btn-outline">Blog</a>
+<!--            <a href="https://blog.naver.com/cyw4328" target="_blank" class="btn-link btn-outline">Blog</a>-->
             <a href="#about" class="btn-link btn-outline">About Me</a>
         </div>
     </div>
