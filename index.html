@@ -1,763 +1,1300 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Developer Choi Young Woo</title>
-    <link rel="stylesheet" href="styles.css">
-
+    <title>Choi Young Woo — Developer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
-        
-        /* styles.css */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-}
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-.container {
-    width: 80%;
-    margin: 0 auto;
-}
+        :root {
+            --bg: #080808;
+            --bg2: #0f0f0f;
+            --bg3: #141414;
+            --card: #111111;
+            --accent: #c9a96e;
+            --accent2: #e8c99a;
+            --text: #eeeeee;
+            --text2: #888888;
+            --text3: #555555;
+            --border: #1e1e1e;
+            --border2: #2a2a2a;
+            --nav-h: 68px;
+            --serif: 'Playfair Display', Georgia, serif;
+            --sans: 'Inter', system-ui, -apple-system, sans-serif;
+            --mono: 'JetBrains Mono', 'Courier New', monospace;
+            --ease: cubic-bezier(0.4, 0, 0.2, 1);
+        }
 
-nav {
-    background-color: #222; /* 어두운 계열의 배경색 */
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 999; /* 다른 요소 위에 위치하도록 설정 */
-    height: 80px;
-}
+        html { scroll-behavior: smooth; }
 
-nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-}
+        body {
+            font-family: var(--sans);
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
 
-nav ul li {
-    display: inline-block;
-    margin-right: 20px;
-}
+        /* ──────────── NAV ──────────── */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            height: var(--nav-h);
+            z-index: 1000;
+            transition: background 0.4s var(--ease), box-shadow 0.4s var(--ease), backdrop-filter 0.4s var(--ease);
+        }
+        nav.scrolled {
+            background: rgba(8, 8, 8, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 1px 0 rgba(201, 169, 110, 0.15);
+        }
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 32px;
+        }
+        .nav-logo {
+            font-family: var(--serif);
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: 0.02em;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+        .nav-logo:hover { opacity: 0.8; }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 40px;
+        }
+        .nav-links a {
+            color: var(--text2);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            position: relative;
+            transition: color 0.25s;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px; left: 0; right: 0;
+            height: 1px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s var(--ease);
+        }
+        .nav-links a:hover { color: var(--accent); }
+        .nav-links a:hover::after { transform: scaleX(1); }
 
-nav ul li a {
-    color: #fff; /* 흰색 텍스트 */
-    text-decoration: none;
-    padding: 10px 0px;
-    transition: color 0.3s ease; /* 부드러운 전환 효과 */
-}
+        /* ──────────── HOME ──────────── */
+        #home {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background:
+                radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,169,110,0.06) 0%, transparent 70%),
+                var(--bg);
+        }
+        .home-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(201,169,110,0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(201,169,110,0.04) 1px, transparent 1px);
+            background-size: 60px 60px;
+            mask-image: radial-gradient(ellipse 100% 80% at 50% 50%, black 30%, transparent 100%);
+            -webkit-mask-image: radial-gradient(ellipse 100% 80% at 50% 50%, black 30%, transparent 100%);
+        }
+        .home-content {
+            position: relative;
+            text-align: center;
+            padding: 0 24px;
+            max-width: 800px;
+        }
+        .home-label {
+            font-family: var(--mono);
+            font-size: 0.75rem;
+            color: var(--accent);
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            margin-bottom: 32px;
+            opacity: 0;
+            animation: fadeUp 0.8s 0.3s var(--ease) forwards;
+        }
+        .home-title {
+            font-family: var(--serif);
+            font-size: clamp(2.2rem, 5.5vw, 4.2rem);
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: -0.01em;
+            color: var(--text);
+            min-height: 1.2em;
+            position: relative;
+        }
+        #typed-text { display: inline; }
+        .cursor {
+            display: inline-block;
+            width: 3px;
+            height: 0.85em;
+            background: var(--accent);
+            margin-left: 4px;
+            vertical-align: text-bottom;
+            animation: blink 1s step-end infinite;
+        }
+        @keyframes blink { 50% { opacity: 0; } }
+        .home-sub {
+            margin-top: 20px;
+            font-size: 1.05rem;
+            color: var(--text2);
+            font-weight: 300;
+            letter-spacing: 0.04em;
+            opacity: 0;
+            transform: translateY(14px);
+            transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+        }
+        .home-sub.visible { opacity: 1; transform: none; }
+        .home-divider {
+            width: 48px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            margin: 36px auto;
+            opacity: 0;
+            transform: scaleX(0);
+            transition: opacity 0.6s 0.2s, transform 0.6s 0.2s var(--ease);
+        }
+        .home-divider.visible { opacity: 1; transform: scaleX(1); }
+        .home-links {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            opacity: 0;
+            transform: translateY(14px);
+            transition: opacity 0.8s 0.4s var(--ease), transform 0.8s 0.4s var(--ease);
+        }
+        .home-links.visible { opacity: 1; transform: none; }
+        .btn-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: 1px solid;
+            transition: all 0.3s var(--ease);
+        }
+        .btn-primary {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: #000;
+        }
+        .btn-primary:hover {
+            background: var(--accent2);
+            border-color: var(--accent2);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(201,169,110,0.3);
+        }
+        .btn-outline {
+            background: transparent;
+            border-color: var(--border2);
+            color: var(--text2);
+        }
+        .btn-outline:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+        .scroll-hint {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            opacity: 0;
+            animation: fadeIn 1s 3s forwards;
+        }
+        .scroll-hint span {
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text3);
+        }
+        .scroll-line {
+            width: 1px;
+            height: 50px;
+            background: linear-gradient(to bottom, var(--accent), transparent);
+            animation: scrollDrop 2s 3s ease-in-out infinite;
+        }
+        @keyframes scrollDrop {
+            0%, 100% { opacity: 0.6; transform: scaleY(1) translateY(0); }
+            50% { opacity: 1; transform: scaleY(1.1) translateY(4px); }
+        }
 
-nav ul li a:hover {
-    color: #ccc; /* 마우스 오버 시 색상 변경 */
-}
+        /* ──────────── SECTIONS ──────────── */
+        section {
+            padding: 110px 0 90px;
+            position: relative;
+        }
+        section:nth-child(even) { background: var(--bg2); }
 
-/* 각 섹션에 대한 배경색 및 스타일 설정 */
-.home-section {
-    background-color: #111; /* 어두운 계열의 배경색 */
-    color: #fff; /* 흰색 텍스트 */
-    height: 100vh; /* 화면 전체 높이 */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
 
-.about-section {
-    background-color: #444; /* 어두운 회색 계열의 배경색 */
-    color: #fff; /* 흰색 텍스트 */
-    padding: 50px 0;
-}
+        .section-header {
+            margin-bottom: 70px;
+            display: flex;
+            align-items: flex-end;
+            gap: 28px;
+        }
+        .section-num {
+            font-family: var(--mono);
+            font-size: 0.75rem;
+            color: var(--accent);
+            letter-spacing: 0.15em;
+            margin-bottom: 8px;
+            display: block;
+        }
+        .section-title {
+            font-family: var(--serif);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            color: var(--text);
+            line-height: 1;
+        }
+        .section-line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, var(--border2), transparent);
+            margin-bottom: 8px;
+        }
 
-.education-section {
-    background-color: #666; /* 더 어두운 회색 계열의 배경색 */
-    color: #fff; /* 흰색 텍스트 */
-    padding: 50px 0;
-}
+        /* ──────────── ABOUT ──────────── */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 64px;
+            align-items: start;
+        }
+        .profile-wrap {
+            position: relative;
+        }
+        .profile-img-box {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 3/4;
+            overflow: hidden;
+        }
+        .profile-img-box::before {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            border: 1px solid var(--accent);
+            z-index: 1;
+            pointer-events: none;
+        }
+        .profile-img-box::after {
+            content: '';
+            position: absolute;
+            bottom: -10px; right: -10px;
+            width: 100%; height: 100%;
+            border: 1px solid rgba(201,169,110,0.25);
+            z-index: 0;
+        }
+        .profile-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+            filter: grayscale(20%);
+            transition: filter 0.4s;
+        }
+        .profile-img-box:hover img { filter: grayscale(0%); }
 
-.projects-section {
-    background-color: #888; /* 더 어두운 회색 계열의 배경색 */
-    color: #fff; /* 흰색 텍스트 */
-    padding: 50px 0;
-}
+        .about-info { padding-top: 8px; }
+        .about-name {
+            font-family: var(--serif);
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 6px;
+        }
+        .about-role {
+            font-size: 0.85rem;
+            color: var(--accent);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            font-weight: 500;
+            margin-bottom: 32px;
+        }
+        .contact-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+        }
+        .contact-icon {
+            width: 36px;
+            height: 36px;
+            border: 1px solid var(--border2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: var(--accent);
+            font-size: 0.85rem;
+        }
+        .contact-label {
+            font-size: 0.7rem;
+            color: var(--text3);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 3px;
+        }
+        .contact-value {
+            font-size: 0.9rem;
+            color: var(--text2);
+        }
+        .contact-value a {
+            color: var(--text2);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .contact-value a:hover { color: var(--accent); }
 
-.skills-section {
-    background-color: #aaa; /* 더 어두운 회색 계열의 배경색 */
-    color: #fff; /* 흰색 텍스트 */
-    padding: 50px 0;
-}
-#container h2 {
-    font-size: 20px;
-}
-.aaa{
-    display: inline-block;
-  padding: 10px 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #f4f4f4;
-  color: #555;
-  text-decoration: none;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
-}
-.aaa:hover{
-    background-color: #ddd;
-}
-.aaa:focus{
-    outline: none;
-  box-shadow: 0 0 0 2px #999;
-}
-.aaa a{
-    color: inherit;
-  text-decoration: none;
-}
+        .edu-card {
+            border: 1px solid var(--border);
+            padding: 24px 28px;
+            background: var(--card);
+            margin-top: 16px;
+        }
+        .edu-school {
+            font-family: var(--serif);
+            font-size: 1.05rem;
+            color: var(--text);
+            margin-bottom: 4px;
+        }
+        .edu-dept {
+            font-size: 0.85rem;
+            color: var(--text2);
+            margin-bottom: 8px;
+        }
+        .edu-period {
+            font-family: var(--mono);
+            font-size: 0.75rem;
+            color: var(--accent);
+            letter-spacing: 0.1em;
+        }
 
-.aaa1{
-    display: inline-block;
-  padding: 10px 20px;
-  background-color: #f4f4f4;
-  color: #555;
-  text-decoration: none;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
-}
+        /* ──────────── PROJECTS ──────────── */
+        .projects-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+            background: var(--border);
+        }
+        .project-card {
+            background: var(--card);
+            padding: 36px 40px;
+            border-left: 3px solid transparent;
+            transition: border-color 0.3s, background 0.3s;
+            cursor: default;
+            position: relative;
+            overflow: hidden;
+        }
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -3px; right: 0; bottom: 0;
+            background: linear-gradient(135deg, rgba(201,169,110,0.03) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .project-card:hover {
+            border-left-color: var(--accent);
+            background: #161616;
+        }
+        .project-card:hover::before { opacity: 1; }
 
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px;
+            margin-bottom: 18px;
+            flex-wrap: wrap;
+        }
+        .project-title {
+            font-family: var(--serif);
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--text);
+            line-height: 1.4;
+            flex: 1;
+        }
+        .project-period {
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            color: var(--accent);
+            background: rgba(201,169,110,0.08);
+            border: 1px solid rgba(201,169,110,0.2);
+            padding: 4px 12px;
+            white-space: nowrap;
+            letter-spacing: 0.08em;
+            flex-shrink: 0;
+        }
+        .project-body {
+            font-size: 0.875rem;
+            color: var(--text2);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        .project-body ul {
+            list-style: none;
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .project-body ul li::before {
+            content: '─ ';
+            color: var(--accent);
+            font-size: 0.7rem;
+        }
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .tag {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            color: var(--text3);
+            border: 1px solid var(--border2);
+            padding: 3px 10px;
+            letter-spacing: 0.06em;
+            transition: color 0.2s, border-color 0.2s;
+        }
+        .project-card:hover .tag {
+            color: var(--text2);
+            border-color: #333;
+        }
+        .project-links {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        .proj-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.75rem;
+            color: var(--text3);
+            text-decoration: none;
+            border: 1px solid var(--border);
+            padding: 6px 14px;
+            letter-spacing: 0.08em;
+            transition: all 0.2s;
+        }
+        .proj-link:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        /* ──────────── EDUCATION ──────────── */
+        .edu-section-card {
+            border: 1px solid var(--border);
+            background: var(--card);
+            margin-bottom: 40px;
+        }
+        .edu-section-header {
+            padding: 28px 36px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .edu-section-title {
+            font-family: var(--serif);
+            font-size: 1.3rem;
+            color: var(--text);
+        }
+        .edu-section-period {
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            color: var(--accent);
+            letter-spacing: 0.1em;
+        }
+        .edu-section-body { padding: 28px 36px; }
+        .edu-curriculum {
+            margin-bottom: 24px;
+        }
+        .edu-curriculum-title {
+            font-size: 0.7rem;
+            color: var(--text3);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+        .edu-curriculum-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .edu-curriculum-list li {
+            font-size: 0.875rem;
+            color: var(--text2);
+            padding-left: 20px;
+            position: relative;
+        }
+        .edu-curriculum-list li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-size: 0.7rem;
+        }
+        .edu-btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .edu-btn {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            padding: 8px 18px;
+            border: 1px solid var(--border2);
+            background: transparent;
+            color: var(--text2);
+            cursor: pointer;
+            letter-spacing: 0.08em;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+        .edu-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .sub-project {
+            border: 1px solid var(--border);
+            background: var(--bg3);
+            margin-bottom: 24px;
+        }
+        .sub-project-header {
+            padding: 20px 28px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .sub-project-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text);
+            letter-spacing: 0.02em;
+        }
+        .sub-project-period {
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            color: var(--text3);
+            letter-spacing: 0.08em;
+        }
+        .sub-project-body { padding: 20px 28px; }
+        .sub-section-label {
+            font-size: 0.68rem;
+            color: var(--accent);
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            margin-top: 20px;
+        }
+        .sub-section-label:first-child { margin-top: 0; }
+        .sub-project-body p {
+            font-size: 0.85rem;
+            color: var(--text2);
+            line-height: 1.8;
+        }
+        .sub-project-body ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .sub-project-body ul li {
+            font-size: 0.85rem;
+            color: var(--text2);
+            padding-left: 18px;
+            position: relative;
+            line-height: 1.7;
+        }
+        .sub-project-body ul li::before {
+            content: '─';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-size: 0.6rem;
+            top: 5px;
+        }
+        .skill-icons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 8px;
+        }
+        .skill-icons img {
+            width: 56px;
+            height: 56px;
+            object-fit: contain;
+            opacity: 0.8;
+            transition: opacity 0.2s, transform 0.2s;
+        }
+        .skill-icons img:hover {
+            opacity: 1;
+            transform: translateY(-2px);
+        }
+        .skill-group-label {
+            font-size: 0.7rem;
+            color: var(--text3);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            margin-top: 16px;
+        }
+
+        /* ──────────── FOOTER ──────────── */
+        footer {
+            background: var(--bg);
+            border-top: 1px solid var(--border);
+            padding: 40px 0;
+            text-align: center;
+        }
+        footer p {
+            font-size: 0.78rem;
+            color: var(--text3);
+            letter-spacing: 0.08em;
+        }
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+        footer a:hover { opacity: 0.8; }
+
+        /* ──────────── ANIMATIONS ──────────── */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to   { opacity: 1; transform: none; }
+        }
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+        }
+        .reveal.in-view {
+            opacity: 1;
+            transform: none;
+        }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+
+        /* ──────────── RESPONSIVE ──────────── */
+        @media (max-width: 768px) {
+            .nav-inner { padding: 0 20px; }
+            .nav-links { gap: 24px; }
+            .nav-links a { font-size: 0.72rem; }
+            .container { padding: 0 20px; }
+            section { padding: 80px 0 60px; }
+            .about-grid { grid-template-columns: 1fr; gap: 40px; }
+            .profile-img-box { max-width: 240px; }
+            .project-card { padding: 24px 20px; }
+            .edu-section-header { padding: 20px; }
+            .edu-section-body { padding: 20px; }
+            .sub-project-header { padding: 16px 20px; }
+            .sub-project-body { padding: 16px 20px; }
+        }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav>
-        <div class="container" style="margin-top: 35px;">
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#education">Education</a></li>
-                <!-- <li><a href="#skills">Skills</a></li> -->
-            </ul>
+
+<!-- ─── NAV ─── -->
+<nav id="main-nav">
+    <div class="nav-inner">
+        <a href="#home" class="nav-logo">CYW</a>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#education">Education</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- ─── HOME ─── -->
+<section id="home">
+    <div class="home-grid"></div>
+    <div class="home-content">
+        <p class="home-label">Backend Developer · Full Stack</p>
+        <h1 class="home-title">
+            <span id="typed-text"></span><span class="cursor"></span>
+        </h1>
+        <p class="home-sub" id="home-sub">
+            함께 성장하는 개발자, 문제를 즐기는 엔지니어
+        </p>
+        <div class="home-divider" id="home-divider"></div>
+        <div class="home-links" id="home-links">
+            <a href="https://github.com/cyw4328" target="_blank" class="btn-link btn-primary">GitHub</a>
+            <a href="https://blog.naver.com/cyw4328" target="_blank" class="btn-link btn-outline">Blog</a>
+            <a href="#about" class="btn-link btn-outline">About Me</a>
         </div>
-    </nav>
+    </div>
+    <div class="scroll-hint">
+        <span>Scroll</span>
+        <div class="scroll-line"></div>
+    </div>
+</section>
 
-    <!-- Home Section -->
-    <section id="home" class="home-section">
-        <div class="container">
-            <h1 id="developer-name"></h1>
+<!-- ─── ABOUT ─── -->
+<section id="about">
+    <div class="container">
+        <div class="section-header reveal">
+            <div>
+                <span class="section-num">01</span>
+                <h2 class="section-title">About</h2>
+            </div>
+            <div class="section-line"></div>
         </div>
-    </section>
 
-    <!-- About Section -->
-    <section id="about" class="about-section">
-        <div class="container">
-            <h2 style="font-size: 50px;">About</h2>
-            <!-- 내 정보 및 소개 등을 여기에 추가 -->
-
-            <div class="sidebar-myself">
-                <div class="myself-profile">
-                    <div class="profile-content" style="display: inline-block;">
-                        <img src="./img/최영우.jpg" style="width: 250px;" class="profile-img"/>
-                    </div>
-                    <div style="display: inline-block;">
-                        <h1 style="margin-left: 30px;">최영우</h1>
-                        <ul style="margin-top: 36px; list-style-type: none;">
-                            <li class="email">
-                                <b>E-Mail</b>
-                                <br/>cyw4328@naver.com
-                            </li>
-                            <br/>
-                            <li class="phone">
-                                <b>PHONE</b>
-                                <br/>010-2669-4328
-                            </li>
-                            <br/>
-                            <li class="blog">
-                                <b>BLOG</b>
-                                <br/>
-                                <a href="https://blog.naver.com/cyw4328" class="aaa1">
-                                    https://blog.naver.com/cyw4328
-                                </a>
-                            </li>
-                            <br/>
-                            <li class="github">
-                                <b>GITHUB</b>
-                                <br/>
-                                <a href="https://github.com/cyw4328" class="aaa1">
-                                    https://github.com/cyw4328
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="myself-education">
-                    <h2 class="container-block-title">Education</h2>
-                    <div class="item">
-                        <h4 class="degree">우송정보대학</h4>
-                        <h5 class="meta">세무정보과</h5>
-                            <div class="time">2012.03 ~ 2014.02</div>
-                            <!-- <div class="time">학점 : 3.32 / 4.5</div> -->
-                    </div>
+        <div class="about-grid">
+            <div class="profile-wrap reveal">
+                <div class="profile-img-box">
+                    <img src="./img/최영우.jpg" alt="Choi Young Woo" />
                 </div>
             </div>
-
-        </div>
-    </section>
-
-    
-
-    <!-- Projects Section -->
-    <section id="projects" class="projects-section">
-        <div class="container">
-            <h2  style="font-size: 50px;">Projects</h2>
-            <!-- 프로젝트 목록을 여기에 추가 -->
-            <!-- ✅ Project 1 -->
-            <div class="first-Project">
-                <br />
-                <hr />
-                <h1 style="font-size: 30px;">농수산물 온라인 도매시장 플랫폼 구축 사업 – 표준화팀</h1>
-
-                <h3 style="font-size: 25px;">DAY</h3>
-                <p style="font-size: 20px;">2025.10 ~ 진행중</p>
-
-                <h3 style="font-size: 25px;">Content</h3>
-                <p style="font-size: 17px;">
-                    Database 표준화(명명 규칙/도메인/공통 코드/테이블 정의) 기준 수립 및 적용 지원을 수행했습니다.
-                    <br /><br />
-                    - DB 표준 규칙 정리 및 적용 가이드 문서화<br />
-                    - 기존 스키마/쿼리 영향도 점검 및 표준 반영 범위 조율<br />
-                    - 개발팀/운영팀 협업으로 표준 적용 이슈 개선 및 정합성 확보
-                </p>
-
-                <h3 style="font-size: 25px;">technology to use</h3>
-                <p style="font-size: 20px;">
-                    SQL, DB 표준화, 문서화, 협업
-                </p>
-            </div>
-
-            <!-- ✅ Project 2 -->
-            <div class="first-Project">
-                <br />
-                <hr />
-                <h1 style="font-size: 30px;">세라젬(CERAGEM) 상담프로그램 – 웹 취약점 조치</h1>
-
-                <h3 style="font-size: 25px;">DAY</h3>
-                <p style="font-size: 20px;">2025.09</p>
-
-                <h3 style="font-size: 25px;">Content</h3>
-                <p style="font-size: 17px;">
-                    보안 진단 결과 기반으로 취약 구간을 개선하고, 재발 방지 형태로 리팩토링을 진행했습니다.
-                    <br /><br />
-                    - 입력값 검증/권한/세션/보안 헤더 등 취약 포인트 개선<br />
-                    - 공통 필터/유틸 정비로 반복 취약점 제거<br />
-                    - 운영 반영 및 재진단 대응(검증/이슈 트래킹) 지원
-                </p>
-
-                <h3 style="font-size: 25px;">technology to use</h3>
-                <p style="font-size: 20px;">
-                    Web Security, Refactoring, 운영 대응
-                </p>
-            </div>
-
-            <!-- ✅ Project 3 -->
-            <div class="first-Project">
-                <br />
-                <hr />
-                <h1 style="font-size: 30px;">세라젬(CERAGEM) 회의실 관리 앱 개발 – 네이버 WORKS 연동</h1>
-
-                <h3 style="font-size: 25px;">DAY</h3>
-                <p style="font-size: 20px;">2025.08</p>
-
-                <h3 style="font-size: 25px;">Content</h3>
-                <p style="font-size: 17px;">
-                    네이버 WORKS 자원 예약 API를 연동하여 회의실 예약/현황 조회 기능을 구현했습니다.
-                    <br /><br />
-                    - 회의실/일정 조회 및 예약 상태 표시 로직 구현<br />
-                    - 태블릿 환경 고려 UI 구성(시간 슬롯/상태 컬러 등)<br />
-                    - 토큰 발급/갱신 흐름 포함 안정화(예외 처리/에러 핸들링)
-                </p>
-
-                <h3 style="font-size: 25px;">technology to use</h3>
-                <p style="font-size: 20px;">
-                    React Native, REST API, Naver WORKS
-                </p>
-            </div>
-
-            <div class="first-Project">
-                <br />
-                <hr />
-                <h1 style="font-size: 30px;">재정정보원 통합경영시스템 – 유지보수 및 추가개발</h1>
-
-                <h3 style="font-size: 25px;">DAY</h3>
-                <p style="font-size: 20px;">2025.04 ~ 2025.07</p>
-
-                <h3 style="font-size: 25px;">Content</h3>
-                <p style="font-size: 17px;">
-                    운영 중인 통합경영시스템 유지보수 및 추가개발을 수행했으며,
-                    <b>회계</b> 영역을 포함해 인사/휴가 등 업무 시스템의 개선과 운영 반영을 진행했습니다.
-                    <br /><br />
-                    - <b>인사/휴가</b> 기능 유지보수 및 요구사항 기반 개선/추가개발<br />
-                    - <b>회계</b> 기능 유지보수 및 요구사항 기반 개선/추가개발<br />
-                </p>
-
-                <h3 style="font-size: 25px;">technology to use</h3>
-                <p style="font-size: 20px;">
-                    .NET, C#, MySQL, MariaDB
-                </p>
-            </div>
-
-            <!-- ✅ Project 4 -->
-            <div class="first-Project">
-                <br />
-                <hr />
-                <h1 style="font-size: 30px;">세라젬(CERAGEM) 시스템 개발 – SAP 연계(ERP/주문 등)</h1>
-
-                <h3 style="font-size: 25px;">DAY</h3>
-                <p style="font-size: 20px;">2024.08 ~ 2025.03</p>
-
-                <h3 style="font-size: 25px;">Content</h3>
-                <p style="font-size: 17px;">
-                    조직/수수료/영업/시스템 모듈 개발 및 NICE 본인인증·신용조회 연동, 운영 이슈 대응을 수행했습니다.
-                    <br /><br />
-                    - 조직 모듈: 조직/조직원 등록·변경·관리 기능 개발<br />
-                    - 수수료 모듈: 정산/관리 로직 및 화면 개발<br />
-                    - 영업 모듈: 주문/계약/통합 관리 흐름 기반 기능 개발<br />
-                    - 시스템 모듈: 공지사항 기능(JPA) 개발 및 유지보수<br />
-                    - NICE 연동: 본인인증/신용조회 연동 개발 및 운영 대응
-                </p>
-
-                <h3 style="font-size: 25px;">technology to use</h3>
-                <p style="font-size: 20px;">
-                    Java, Spring, JPA, Vue.js, Oracle, SAP 연계
-                </p>
-            </div>
-
-            <!-- ✅ Project 5 -->
-            <div class="first-Project">
-                <br />
-                <hr />
-                <h1 style="font-size: 30px;">재정정보원 통합경영시스템 – 유지보수 및 추가개발</h1>
-
-                <h3 style="font-size: 25px;">DAY</h3>
-                <p style="font-size: 20px;">2023.11 ~ 2024.07</p>
-
-                <h3 style="font-size: 25px;">Content</h3>
-                <p style="font-size: 17px;">
-                    운영 시스템 유지보수/추가개발을 수행했으며, 담당자 부재 시 업무 연속성을 위한 기능을 개발했습니다.
-                    <br /><br />
-                    - 대결자 지정 기능 개발(담당자 부재 시 업무 공백 방지)<br />
-                    - 요구사항 기반 기능 개선/추가개발 및 운영 반영<br />
-                    - 타 DB 데이터 연동/조회 등 유지보수 수행
-                </p>
-
-                <h3 style="font-size: 25px;">technology to use</h3>
-                <p style="font-size: 20px;">
-                    .NET, C#, MySQL, MariaDB
-                </p>
-            </div>
-
-            <!-- ✅ Project 6 -->
-            <div class="first-Project">
-                <br />
-                <hr />
-                <h1 style="font-size: 30px;">Ailey 프로젝트 – 소통형 SNS 관리자 페이지</h1>
-
-                <h3 style="font-size: 25px;">DAY</h3>
-                <p style="font-size: 20px;">2023.09 ~ 2023.10</p>
-
-                <h3 style="font-size: 25px;">Content</h3>
-                <p style="font-size: 17px;">
-                    관리자 페이지(사용자관리, 혜택관리, 이벤트관리 등) 개발을 담당했고, 개발 서버를 관리하며 진행했습니다.
-                    <br /><br />
-                    - 관리자 기능 화면/로직 개발(사용자/혜택/이벤트 등)<br />
-                    - 개발 서버 운영/관리 및 이슈 대응 지원
-                </p>
-
-                <h3 style="font-size: 25px;">technology to use</h3>
-                <p style="font-size: 20px;">
-                    Java, JSP, Spring Boot, GitLab
-                </p>
-            </div>
-
-            <!-- ✅ Project 7 -->
-            <div class="first-Project">
-                <br />
-                <hr />
-                <h1 style="font-size: 30px;">검색#뷰티(검뷰) 프로젝트 – 관리자 & 앱 출시</h1>
-                <a class="aaa" href="https://apps.apple.com/kr/app/%EA%B2%80%EB%B7%B0-%EC%84%B1%ED%98%95-%ED%94%BC%EB%B6%80-%ED%9B%84%EA%B8%B0-%ED%99%94%EC%9E%A5%ED%92%88-%EC%95%B1%ED%85%8C%ED%81%AC/id1673675953"><img src="./img/검뷰이미지.PNG" width="50px" height="50px"/><p>ios 앱 링크</p></a>
-                <a class="aaa" href="https://play.google.com/store/apps/datasafety?id=io.amazingpeoples.beauty_reward_flutter2&pli=1"><img src="./img/검뷰이미지.PNG" width="50px" height="50px"/><p>google 앱 링크</p></a>
-
-                <h3 style="font-size: 25px;">DAY</h3>
-                <p style="font-size: 20px;">2023.01 ~ 2023.08</p>
-
-                <h3 style="font-size: 25px;">Content</h3>
-                <p style="font-size: 17px;">
-                    성형 전문 리워드 앱의 관리자 페이지 개발과 Flutter WebView 기반 앱 출시를 담당했습니다.
-                    <br /><br />
-                    - 관리자 페이지 개발(병원/사용자/충전·환불/통계/RPA 등)<br />
-                    - Flutter WebView 기반 앱 패키징 및 스토어 심사 대응(구글/애플) / 출시 완료<br />
-                    - 개발/스테이징 서버 관리, GitLab+Jenkins 자동화, Linux 환경 운영
-                </p>
-
-                <h3 style="font-size: 25px;">technology to use</h3>
-                <p style="font-size: 20px;">
-                    Spring Boot, Java, JSP, JavaScript, Flutter, GitLab, Jenkins, Linux, Tomcat
-                </p>
-            </div>
-
-            <!-- ✅ Project 8 -->
-            <div class="first-Project">
-                <br />
-                <hr />
-                <h1 style="font-size: 30px;">대신증권 상담프로그램 & 상담메뉴얼 고도화</h1>
-
-                <h3 style="font-size: 25px;">DAY</h3>
-                <p style="font-size: 20px;">2022.06 ~ 2022.12</p>
-
-                <h3 style="font-size: 25px;">Content</h3>
-                <p style="font-size: 17px;">
-                    상담프로그램 기능 개발과 상담메뉴얼 단독 개발을 수행했습니다.
-                    <br /><br />
-                    - 상담프로그램: 상담이력/마이페이지 기능 개발<br />
-                    - 상담메뉴얼: 에디터 적용 및 메뉴얼 검색 기능 구현<br />
-                    - GitLab 기반 협업/형상관리 및 운영 지원
-                </p>
-
-                <h3 style="font-size: 25px;">technology to use</h3>
-                <p style="font-size: 20px;">
-                    Spring Boot, Vue.js, Tibero, Redis, GitLab
-                </p>
-            </div>
-<!--            <div class="first-Project">-->
-<!--                <br/>-->
-<!--                <hr/>-->
-<!--                <h1 style="font-size: 30px;">재정정보원 유지보수/추가개발</h1>-->
-<!--                -->
-<!--                <h3 style="font-size: 25px;">DAY</h3>-->
-<!--                <p style="font-size: 20px;">2023.11.01 ~ 2023.12.31</p>-->
-<!--                <h3 style="font-size: 25px;">Content</h3>-->
-<!--                <p style="font-size: 17px;">-->
-<!--                    재정정보원에 운영중인 통합경영시스템에 유지보수 투입되어 개발 진행하였습니다.-->
-<!--                    <br/><br/>-->
-<!--                    화이트리스트 수정 건을 진행하였으며,-->
-<!--                    <br/><br/>-->
-<!--                    담당자가 부재중일때 대결자를 지정할 수 있는 시스템을 개발하였으며 , -->
-<!--                    <br/><br/>-->
-<!--                    이때 open query 를 사용하여 타 DataBase 에 데이터를 컨트롤하여 개발을 진행하였습니다.-->
-
-<!--                </p>-->
-<!--               -->
-<!--                <h3 style="font-size: 25px;">technology to use</h3>-->
-<!--                <p style="font-size: 20px;">-->
-<!--                    .net , c# , my-sql , maria-DB-->
-<!--                </p>-->
-<!--            -->
-<!--            </div>-->
-
-<!--            <div class="first-Project">-->
-<!--                <br/>-->
-<!--                <hr/>-->
-<!--                <h1 style="font-size: 30px;">Aliey 프로젝트</h1>-->
-<!--                -->
-<!--                <h3 style="font-size: 25px;">DAY</h3>-->
-<!--                <p style="font-size: 20px;">2023.08.01 ~ 2023.10.31</p>-->
-<!--                <h3 style="font-size: 25px;">Content</h3>-->
-<!--                <p style="font-size: 17px;">-->
-<!--                    소통형 sns 프로젝트인 Aliey 프로젝트에서 -->
-
-<!--                    관리자 페이지 ( 사용자관리 , 혜택관리 , 이벤트관리 등 )을 담당하여 개발을 진행하였으며 , -->
-
-<!--                    개발서버를 관리하며 진행하였습니다.-->
-<!--                </p>-->
-<!--               -->
-<!--                <h3 style="font-size: 25px;">technology to use</h3>-->
-<!--                <p style="font-size: 20px;">-->
-<!--                    jsp , java , spring-boot , gitlab-->
-<!--                </p>-->
-<!--            -->
-<!--            </div>-->
-
-<!--            <div class="first-Project">-->
-<!--                <br/>-->
-<!--                <hr/>-->
-<!--                <h1 style="font-size: 30px;">검색#뷰티 프로젝트</h1>-->
-<!--                <a class="aaa" href="https://apps.apple.com/kr/app/%EA%B2%80%EB%B7%B0-%EC%84%B1%ED%98%95-%ED%94%BC%EB%B6%80-%ED%9B%84%EA%B8%B0-%ED%99%94%EC%9E%A5%ED%92%88-%EC%95%B1%ED%85%8C%ED%81%AC/id1673675953"><img src="./img/검뷰이미지.PNG" width="50px" height="50px"/><p>ios 앱 링크</p></a>-->
-<!--                <a class="aaa" href="https://play.google.com/store/apps/datasafety?id=io.amazingpeoples.beauty_reward_flutter2&pli=1"><img src="./img/검뷰이미지.PNG" width="50px" height="50px"/><p>google 앱 링크</p></a>-->
-<!--                -->
-
-<!--                <h3 style="font-size: 25px;">DAY</h3>-->
-<!--                <p style="font-size: 20px;">2023.01.02 ~ 2023.07.31</p>-->
-<!--                <h3 style="font-size: 25px;">Content</h3>-->
-<!--                <p style="font-size: 17px;">-->
-<!--                    성형 전문 리워드 앱 검색#뷰티프로젝트에서<br/>-->
-<!--                    <br/>-->
-<!--                    관리자페이지 ( 서비스이용병원관리 , 서비스이용사용자관리 , 충전및환불금관리 , 통계 , RPA 관리 등) 개발을 담당하였으며,-->
-<!--                    <br/><br/>-->
-<!--                    flutter 를 담당하여 웹뷰로 어플화를 개발하였습니다. <br/>-->
-<!--                    webview 를 이용하여 어플을 제작하였으며 , google 및 apple 사에 어플 심사 통과를 담당하여 출시를 완료하였습니다.-->
-<!--                    <br/><br/>-->
-<!--                    회사 내에서 Technical Architect (TA) 를 담당하여 개발서버 , Stg서버를 생성 및 관리하였으며 , 운영반영을 진행하였습니다. -->
-<!--                    <br/><br/>-->
-<!--                    gitlab 과 jenkins 자동화를 진행하였으며 , rocky linux 에 virtualbox 를 활용하여 구축/관리하였습니다.-->
-<!--                </p>-->
-<!--               -->
-<!--                <h3 style="font-size: 25px;">technology to use</h3>-->
-<!--                <p style="font-size: 20px;">-->
-<!--                    flutter , jsp , java , spring-boot , gitlab , jenkins , rocky linux , tomcat-->
-<!--                </p>-->
-<!--            -->
-<!--            </div>-->
-
-<!--            <div class="first-Project">-->
-<!--                <br/>-->
-<!--                <hr/>-->
-<!--                <h1 style="font-size: 30px;">대신증권 상담프로그램 & 상담메뉴얼</h1>-->
-<!--                -->
-<!--                <h3 style="font-size: 25px;">DAY</h3>-->
-<!--                <p style="font-size: 20px;">2022.06.01 ~ 2022.12.31</p>-->
-<!--                <h3 style="font-size: 25px;">Content</h3>-->
-<!--                <p style="font-size: 17px;">-->
-<!--                    대신증권에서 사용중인 상담프로그램과 상담메뉴얼 고도화 프로젝트에 투입되었습니다.<br/>-->
-<!--                    <br/>-->
-<!--                    상담프로그램에 상담이력부분과 마이페이지 담당하였고 , 상담메뉴얼은 단독 개발을 맡아 진행하였습니다. <br/>-->
-<!--                    <br/>-->
-<!--                    상담메뉴얼은 나모에디터를 적용하여 개발을 작업하였고 , <br/>다이캐스트 검색엔진을 활용하여-->
-<!--                    메뉴얼 검색 개발을 완료하였습니다.-->
-<!--                    <br/>-->
-<!--                    개발 진행 간에 gitlab 을 관리하며 진행하였습니다.-->
-<!--                </p>-->
-<!--               -->
-<!--                <h3 style="font-size: 25px;">technology to use</h3>-->
-<!--                <p style="font-size: 20px;">-->
-<!--                    vue.js , java , spring-boot , gitlab , jenkins-->
-<!--                </p>-->
-<!--            -->
-<!--            </div>-->
-
-        </div>
-    </section>
-
-
-
-    <!-- Education Section -->
-    <section id="education" class="education-section">
-        <div class="container">
-            <h2 style="font-size: 50px;">Devleop Education</h2>
-            <!-- 학력 정보를 여기에 추가 -->
-
-            <div class="main-myself">
-                <div>
-                    <br/>
-                    <h4>(자바/스프링 기반)디지털융합 SW전문가 양성과정 (2021.09.30 ~ 2022.04.04)</h4>
-                    <h4>교육기관 : 구디 아카데미</h4>
-                    <p>
-                        1. Web Front-End ( HTML , CSS , JAVA-SCRIPT , J-QUERY , JSP , ES6 , REACT )<br/>
-                        2. DataBase ( MARIA DB )<br/>
-                        3. Web Back-End ( JAVA , JSP , SpringFrameWork , MYBATIS , SpringAdvence )<br/>
-                        4. Web Project
-                    </p>
-                    <button class="textBtn" onclick="text()" style="border: 0; background-color: black; color: white; width: 150px; height: 30px;"> 최영우의 수강후기보기 </button>
-                    <button class="textBtn" onclick="video()" style="border: 0; background-color: black; color: white; width: 150px; height: 30px;"> 최영우의 인터뷰보기 </button>
+            <div class="about-info">
+                <h3 class="about-name reveal">최영우</h3>
+                <p class="about-role reveal reveal-delay-1">Backend Developer</p>
+                <ul class="contact-list">
+                    <li class="contact-item reveal reveal-delay-1">
+                        <div class="contact-icon">✉</div>
+                        <div>
+                            <div class="contact-label">E-Mail</div>
+                            <div class="contact-value">
+                                <a href="mailto:cyw4328@naver.com">cyw4328@naver.com</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="contact-item reveal reveal-delay-2">
+                        <div class="contact-icon">☎</div>
+                        <div>
+                            <div class="contact-label">Phone</div>
+                            <div class="contact-value">010-2669-4328</div>
+                        </div>
+                    </li>
+                    <li class="contact-item reveal reveal-delay-2">
+                        <div class="contact-icon">◈</div>
+                        <div>
+                            <div class="contact-label">Blog</div>
+                            <div class="contact-value">
+                                <a href="https://blog.naver.com/cyw4328" target="_blank">blog.naver.com/cyw4328</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="contact-item reveal reveal-delay-3">
+                        <div class="contact-icon">⌥</div>
+                        <div>
+                            <div class="contact-label">GitHub</div>
+                            <div class="contact-value">
+                                <a href="https://github.com/cyw4328" target="_blank">github.com/cyw4328</a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="edu-card reveal reveal-delay-2">
+                    <div class="edu-school">우송정보대학교</div>
+                    <div class="edu-dept">세무정보과</div>
+                    <div class="edu-period">2012.03 — 2014.02</div>
                 </div>
-                <div class="first-Project">
-                    <br/>
-                    <hr/>
-                    <h1 style="font-size: 30px;">1ST(SEMI) PROJECT</h1>
-                    
-                    <a href="./img/00_1조 요구사항 정의서(完).xlsx" target="_blank"><button class="first-project-btn">요구사항정의서</button></a>
-                    <a href="./img/GDJ42_1.png" target="_blank"><button class="first-project-btn">DB 설계</button></a>
-                    <a href="./img/Daily Share.pdf" target="_blank"><button class="first-project-btn">PDF</button></a>
-                    <a href="https://github.com/cyw4328/DailyShare" target="_blank"><button class="first-project-btn">GITHUB</button></a>
-                    <br/>
-                    <hr/>
-                    <h3 style="font-size: 25px;">SUBJECT</h3>
-                    <p style="font-size: 20px;">Daily Share ( 개인 블로그 사이트 )</p><hr/>
-                    <h3 style="font-size: 25px;">DAY</h3>
-                    <p style="font-size: 20px;">2022.01.03 ~ 2022.01.18 (16일)</p><hr/>
-                    <h3 style="font-size: 25px;">Content</h3>
-                    <p style="font-size: 17px;">
-                        개인의 정보를 공유할 수 있는 블로그 사이트 입니다.<br/>
-                        <br/>
-                        회원은 개인 블로그에 게시글을 작성하여 정보를 저장할 수 있으며,<br/>
-                        업로드 된 게시글은 공개범위에 따라 전체보기인 것은 다른 이용자들이 볼 수 있으며,
-                        서로 댓글과 대댓글로 소통할 수 있습니다.<br/>
-                        <br/>
-                        메인페이지에서는 공감수가 높은 순으로 보여주는 부분과 최신 순으로 보여지는 영역이 있으며,
-                        각 카테고리 별 해당하는 개인의 메뉴안에 있는 게시글을 리스트로 보여줍니다.<br/>
-                        <br/>
-                        개인의 정보를 확인 수정 할 수 있는 마이페이지 기능과
-                        관리자 아이디 접속 시 사용 할 수 있는 관리자 기능을 분리 시켜놓았습니다.<br/>
-                        <br/>
-                        1차 프로젝트라 기본에 충실하여 프로젝트를 진행하였습니다.
-                    </p><hr/>
-                    <h3 style="font-size: 25px;">Responsibilities</h3>
-                    <p style="font-size: 17px;">
-                        <b>1) 팀장 업무 : </b><br/>프로젝트 전반적인 일정 관리 및 담당 업무 배치, 코드 관리 업무<br/>
-                        <b>2) 검색 기능 : </b><br/>사이트 전체 회원의 게시 글을 분류에 따라 검색할 수 있는 기능 구현<br/>
-                        <b>3) 리스트 불러오기 기능 : </b><br/>모든 회원의 게시 글 중 공개 범위가 전체 보기 인<br/>
-                        게시 글을 불러와 나열해주는 기능 구현<br/>
-                        <b>4) 카테고리 , 메뉴 기능 : </b><br/>대 분류 , 중 분류 , 개인 메뉴 기능 추가 및 삭제 기능 구현<br/>
-                        ( 카테고리에 속한 메뉴에 있는 게시 글을 불러오거나 블라인드 처리 )<br/>
-                        <b>5) 신고 기능 : </b><br/>게시 글을 신고 항목 별로 나누어 신고 처리 할 수 있는 기능 구현<br/>
-                        <b>6) MY PAGE 기능 : </b><br/>내 정보를 수정 기능 , 구독 관계 수정 기능 , 알림 기능 구현<br/>
-                        내가 적은 게시 글 및 댓글 관리 기능 구현<br/>
-                    </p><hr/>
-                    <h3 style="font-size: 25px;">technology to use</h3>
-                    <p style="font-size: 20px;">
-                        1) 구현 언어 : JAVA , SQL , HTML , CSS , JAVA-SCRIPT , JSP<br/>
-                        2) 사용 기술 : J-Query , Ajax , JSON , XML<br/>
-                        3) 프레임 워크 : Spring Framework , Mybatis<br/>
-                        4) 시스템 : github<br/>
-                        5) 사용 도구 : Maria DB , Source Tree<br/>
-                        6) WAS : Apache tomcat
-                    </p><hr/>
-                    <h3 style="font-size: 25px;">SKILL</h3>
-                    <p style="font-size: 20px;">♥ Web Front-End<br/><br/>
-                        <img src="./img/HTML 5.PNG" class="Front-skill" style="width: 100px;"/>
-                        <img src="./img/CSS 3.PNG" class="Front-skill" style="width: 100px;"/>
-                        <img src="./img/JS.PNG" class="Front-skill" style="width: 100px;"/>
-                        <img src="./img/J-Query.PNG" class="Front-skill" style="width: 100px;"/>
-                    </p>
+            </div>
+        </div>
+    </div>
+</section>
 
-                    <p style="font-size: 20px;">♥ DataBase <br/><br/>
-                        <img src="./img/DBever.PNG" class="Front-skill" style="width: 100px;"/>
-                        <img src="./img/Maria DB.PNG" class="Front-skill" style="width: 100px;"/>
-                    </p>
-                    <p style="font-size: 20px;">
-                        ♥ Web Back-End<br/><br/>
-                        <img src="./img/java.PNG" class="Front-skill" style="width: 100px;"/>
-                        <img src="./img/myBatis.PNG" class="Front-skill" style="width: 100px;"/>
-                        <img src="./img/Spring.PNG" class="Front-skill" style="width: 100px;"/>
-                        <img src="./img/Tomcat.PNG" class="Front-skill" style="width: 100px;"/>
-                    </p>
-                    
+<!-- ─── PROJECTS ─── -->
+<section id="projects">
+    <div class="container">
+        <div class="section-header reveal">
+            <div>
+                <span class="section-num">02</span>
+                <h2 class="section-title">Projects</h2>
+            </div>
+            <div class="section-line"></div>
+        </div>
+
+        <div class="projects-list">
+
+            <!-- P1 -->
+            <div class="project-card reveal">
+                <div class="project-header">
+                    <div class="project-title">농수산물 온라인 도매시장 플랫폼 구축 – 표준화팀</div>
+                    <span class="project-period">2025.10 — 진행중</span>
                 </div>
-                <div class="final-Project">
-                    <br/>
-                    <hr/>
-                    <h1 style="font-size: 30px;">2nd(FINAL) PROJECT</h1>
-                    
-                    <a href="./img/00_1조 요구사항 정의서.xlsx" target="_blank"><button class="final-project-btn">요구사항정의서</button></a>
-                    <a href="./img/1조_ERD (1).png" target="_blank"><button class="final-project-btn">DB 설계</button></a>
-                    <a href="./img/GDJ42기 2차프로젝트 1조 발표자료.pdf" target="_blank"><button class="final-project-btn">PDF</button></a>
-                    <a href="https://github.com/cyw4328/PrettyDog" target="_blank"><button class="final-project-btn">GITHUB</button></a>
-                    <a href="./img/1조 테스트내역서.xlsx" target="_blank"><button class="final-project-btn">테스트내역서</button></a>
-                    <a href="./img/발표영상.mp4" target="_blank"><button class="final-project-btn">발표영상</button></a>
-                    <br/>
-                    <hr/>
-                    <h3 style="font-size: 25px;">SUBJECT</h3>
-                    <p style="font-size: 20px;">PrettyDog ( 애견미용 예약 사이트 )</p><hr/>
-                    <h3 style="font-size: 25px;">DAY</h3>
-                    <p style="font-size: 20px;">2022.02.21 ~ 2022.03.25 ( 33일 )</p><hr/>
-                    <h3 style="font-size: 25px;">Content</h3>
-                    <p style="font-size: 17px;">
-                        애견 미용 매장 예약을 할 수 있는 플랫폼 사이트입니다.<br/>
-                        <br/>
-                        애견 미용 서비스 매장을 운영하는 업주회원이 등록한 매장정보를 통하여<br/>
-                        일반회원이 미용서비스를 예약할 수 있는 기능을 구현한 사이트입니다.<br/>
-                        <br/>
-                        일반회원이 지역별 , 이용하고 싶은 서비스종류를 선택하여 낮은가격순과 추천순의 리스트 중
-                        원하는 매장에 예약을 할 수 있으며 , 충전한 포인트를 이용하여 바로 결제를 할 수 있습니다.<br/>
-                        <br/>
-                        업주회원은 해당 매장의 예약가능 날짜와 시간을 설정할 수 있고 해당 매장을 운영함에 있어서 정보를
-                        등록 및 수정,삭제를 할 수 있습니다.<br/>
-                        예약으로 인한 포인트 이익을 관리자에게 환급신청을 할 수 있으며, 예약에 관한 노쇼 및 이용완료 처리를 하여
-                        수익을 얻을 수 있습니다.
-                    </p><hr/>
-                    <h3 style="font-size: 25px;">Responsibilities</h3>
-                    <p style="font-size: 17px;">
-                        <b>1) 팀장 업무 : </b><br/>프로젝트 전반적인 일정 관리 및 담당 업무 배치, 코드 관리 업무, 전체적인 설계<br/>
-                        <b>2) 포인트 업무 : </b><br/>예약 상태에 따른 포인트 이동 기능( 충전 , 환전 , 결제)<br/>
-                        <b>3) 마이 페이지 업무 : </b><br/>회원(일반,업주)의 포인트 상태 변경 , 게시글 관리 , 댓글 관리 , 알림 , 관심매장 추가/해제 기능 , 예약 상태 변경 기능<br/>
-                        <b>4) 관리자 업무 : </b><br/>사이트에서 사용하는 신고 설정 , 신고 처리 , 커뮤니티 카테고리 설정 , 추가 서비스 항목 설정<br/>
-                        <b>5) 예약 업무 : </b><br/>예약 상태 변경 기능<br/>
-                        <b>6 로그인 / 아이디,비밀번호 찾기 업무 : </b><br/>암호화를 이용한 기능<br/>
-    
-                    </p><hr/>
-                    <h3 style="font-size: 25px;">technology to use</h3>
-                    <p style="font-size: 20px;">
-                        1) 구현 언어 : JAVA , SQL , HTML , CSS , JAVA-SCRIPT , JSP<br/>
-                        2) 사용 기술 : J-Query , Ajax , JSON , XML<br/>
-                        3) 프레임 워크 : Spring Framework , Mybatis<br/>
-                        4) 시스템 : github<br/>
-                        5) 사용 도구 : Maria DB , Source Tree<br/>
-                        6) WAS : Apache tomcat
-                    </p><hr/>
-                    <h3 style="font-size: 25px;">SKILL</h3>
-                    <p style="font-size: 20px;">♥ Web Front-End<br/><br/>
-                        <img src="./img/HTML 5.PNG" class="Front-skill" style="width: 100px;"/>
-                        <img src="./img/CSS 3.PNG" class="Front-skill" style="width: 100px;"/>
-                        <img src="./img/JS.PNG" class="Front-skill" style="width: 100px;"/>
-                        <img src="./img/J-Query.PNG" class="Front-skill" style="width: 100px;"/>
-                    </p>
-    
-                    <p style="font-size: 20px;">♥ DataBase <br/><br/>
-                        <img src="./img/DBever.PNG" class="Front-skill" style="width: 100px;"/>
-                        <img src="./img/Maria DB.PNG" class="Front-skill" style="width: 100px;"/>
-                    </p>
-                    <p style="font-size: 20px;">
-                        ♥ Web Back-End<br/><br/>
-                        <img src="./img/java.PNG" class="Front-skill" style="width: 100px;"/>
-                        <img src="./img/myBatis.PNG" class="Front-skill" style="width: 100px;"/>
-                        <img src="./img/Spring.PNG" class="Front-skill" style="width: 100px;"/>
-                        <img src="./img/Tomcat.PNG" class="Front-skill" style="width: 100px;"/>
-                    </p>
-                    
+                <div class="project-body">
+                    <p>Database 표준화(명명 규칙/도메인/공통 코드/테이블 정의) 기준 수립 및 적용 지원을 수행했습니다.</p>
+                    <ul>
+                        <li>DB 표준 규칙 정리 및 적용 가이드 문서화</li>
+                        <li>기존 스키마/쿼리 영향도 점검 및 표준 반영 범위 조율</li>
+                        <li>개발팀/운영팀 협업으로 표준 적용 이슈 개선 및 정합성 확보</li>
+                    </ul>
+                </div>
+                <div class="tech-tags">
+                    <span class="tag">SQL</span>
+                    <span class="tag">DB 표준화</span>
+                    <span class="tag">문서화</span>
+                    <span class="tag">협업</span>
+                </div>
+            </div>
+
+            <!-- P2 -->
+            <div class="project-card reveal">
+                <div class="project-header">
+                    <div class="project-title">세라젬(CERAGEM) 상담프로그램 – 웹 취약점 조치</div>
+                    <span class="project-period">2025.09</span>
+                </div>
+                <div class="project-body">
+                    <p>보안 진단 결과 기반으로 취약 구간을 개선하고, 재발 방지 형태로 리팩토링을 진행했습니다.</p>
+                    <ul>
+                        <li>입력값 검증/권한/세션/보안 헤더 등 취약 포인트 개선</li>
+                        <li>공통 필터/유틸 정비로 반복 취약점 제거</li>
+                        <li>운영 반영 및 재진단 대응(검증/이슈 트래킹) 지원</li>
+                    </ul>
+                </div>
+                <div class="tech-tags">
+                    <span class="tag">Web Security</span>
+                    <span class="tag">Refactoring</span>
+                    <span class="tag">운영 대응</span>
+                </div>
+            </div>
+
+            <!-- P3 -->
+            <div class="project-card reveal">
+                <div class="project-header">
+                    <div class="project-title">세라젬(CERAGEM) 회의실 관리 앱 – 네이버 WORKS 연동</div>
+                    <span class="project-period">2025.08</span>
+                </div>
+                <div class="project-body">
+                    <p>네이버 WORKS 자원 예약 API를 연동하여 회의실 예약/현황 조회 기능을 구현했습니다.</p>
+                    <ul>
+                        <li>회의실/일정 조회 및 예약 상태 표시 로직 구현</li>
+                        <li>태블릿 환경 고려 UI 구성(시간 슬롯/상태 컬러 등)</li>
+                        <li>토큰 발급/갱신 흐름 포함 안정화(예외 처리/에러 핸들링)</li>
+                    </ul>
+                </div>
+                <div class="tech-tags">
+                    <span class="tag">React Native</span>
+                    <span class="tag">REST API</span>
+                    <span class="tag">Naver WORKS</span>
+                </div>
+            </div>
+
+            <!-- P4 -->
+            <div class="project-card reveal">
+                <div class="project-header">
+                    <div class="project-title">재정정보원 통합경영시스템 – 유지보수 및 추가개발</div>
+                    <span class="project-period">2025.04 — 2025.07</span>
+                </div>
+                <div class="project-body">
+                    <p>운영 중인 통합경영시스템 유지보수 및 추가개발을 수행했으며, 회계/인사/휴가 등 업무 시스템의 개선과 운영 반영을 진행했습니다.</p>
+                    <ul>
+                        <li>인사/휴가 기능 유지보수 및 요구사항 기반 개선/추가개발</li>
+                        <li>회계 기능 유지보수 및 요구사항 기반 개선/추가개발</li>
+                    </ul>
+                </div>
+                <div class="tech-tags">
+                    <span class="tag">.NET</span>
+                    <span class="tag">C#</span>
+                    <span class="tag">MySQL</span>
+                    <span class="tag">MariaDB</span>
+                </div>
+            </div>
+
+            <!-- P5 -->
+            <div class="project-card reveal">
+                <div class="project-header">
+                    <div class="project-title">세라젬(CERAGEM) 시스템 개발 – SAP 연계 (ERP/주문 등)</div>
+                    <span class="project-period">2024.08 — 2025.03</span>
+                </div>
+                <div class="project-body">
+                    <p>조직/수수료/영업/시스템 모듈 개발 및 NICE 본인인증·신용조회 연동, 운영 이슈 대응을 수행했습니다.</p>
+                    <ul>
+                        <li>조직 모듈: 조직/조직원 등록·변경·관리 기능 개발</li>
+                        <li>수수료 모듈: 정산/관리 로직 및 화면 개발</li>
+                        <li>영업 모듈: 주문/계약/통합 관리 흐름 기반 기능 개발</li>
+                        <li>시스템 모듈: 공지사항 기능(JPA) 개발 및 유지보수</li>
+                        <li>NICE 연동: 본인인증/신용조회 연동 개발 및 운영 대응</li>
+                    </ul>
+                </div>
+                <div class="tech-tags">
+                    <span class="tag">Java</span>
+                    <span class="tag">Spring</span>
+                    <span class="tag">JPA</span>
+                    <span class="tag">Vue.js</span>
+                    <span class="tag">Oracle</span>
+                    <span class="tag">SAP</span>
+                </div>
+            </div>
+
+            <!-- P6 -->
+            <div class="project-card reveal">
+                <div class="project-header">
+                    <div class="project-title">재정정보원 통합경영시스템 – 유지보수 및 추가개발</div>
+                    <span class="project-period">2023.11 — 2024.07</span>
+                </div>
+                <div class="project-body">
+                    <p>운영 시스템 유지보수/추가개발을 수행했으며, 담당자 부재 시 업무 연속성을 위한 기능을 개발했습니다.</p>
+                    <ul>
+                        <li>대결자 지정 기능 개발(담당자 부재 시 업무 공백 방지)</li>
+                        <li>요구사항 기반 기능 개선/추가개발 및 운영 반영</li>
+                        <li>타 DB 데이터 연동/조회 등 유지보수 수행</li>
+                    </ul>
+                </div>
+                <div class="tech-tags">
+                    <span class="tag">.NET</span>
+                    <span class="tag">C#</span>
+                    <span class="tag">MySQL</span>
+                    <span class="tag">MariaDB</span>
+                </div>
+            </div>
+
+            <!-- P7 -->
+            <div class="project-card reveal">
+                <div class="project-header">
+                    <div class="project-title">Ailey 프로젝트 – 소통형 SNS 관리자 페이지</div>
+                    <span class="project-period">2023.09 — 2023.10</span>
+                </div>
+                <div class="project-body">
+                    <p>관리자 페이지(사용자관리, 혜택관리, 이벤트관리 등) 개발을 담당했고, 개발 서버를 관리하며 진행했습니다.</p>
+                    <ul>
+                        <li>관리자 기능 화면/로직 개발(사용자/혜택/이벤트 등)</li>
+                        <li>개발 서버 운영/관리 및 이슈 대응 지원</li>
+                    </ul>
+                </div>
+                <div class="tech-tags">
+                    <span class="tag">Java</span>
+                    <span class="tag">JSP</span>
+                    <span class="tag">Spring Boot</span>
+                    <span class="tag">GitLab</span>
+                </div>
+            </div>
+
+            <!-- P8 -->
+            <div class="project-card reveal">
+                <div class="project-header">
+                    <div class="project-title">검색#뷰티(검뷰) 프로젝트 – 관리자 & 앱 출시</div>
+                    <span class="project-period">2023.01 — 2023.08</span>
+                </div>
+                <div class="project-body">
+                    <p>성형 전문 리워드 앱의 관리자 페이지 개발과 Flutter WebView 기반 앱 출시를 담당했습니다.</p>
+                    <ul>
+                        <li>관리자 페이지 개발(병원/사용자/충전·환불/통계/RPA 등)</li>
+                        <li>Flutter WebView 기반 앱 패키징 및 스토어 심사 대응(구글/애플) / 출시 완료</li>
+                        <li>개발/스테이징 서버 관리, GitLab+Jenkins 자동화, Linux 환경 운영</li>
+                    </ul>
+                </div>
+                <div class="project-links">
+                    <a href="https://apps.apple.com/kr/app/%EA%B2%80%EB%B7%B0-%EC%84%B1%ED%98%95-%ED%94%BC%EB%B6%80-%ED%9B%84%EA%B8%B0-%ED%99%94%EC%9E%A5%ED%92%88-%EC%95%B1%ED%85%8C%ED%81%AC/id1673675953" target="_blank" class="proj-link">▶ iOS App</a>
+                    <a href="https://play.google.com/store/apps/datasafety?id=io.amazingpeoples.beauty_reward_flutter2&pli=1" target="_blank" class="proj-link">▶ Google Play</a>
+                </div>
+                <div class="tech-tags">
+                    <span class="tag">Spring Boot</span>
+                    <span class="tag">Java</span>
+                    <span class="tag">JSP</span>
+                    <span class="tag">Flutter</span>
+                    <span class="tag">GitLab</span>
+                    <span class="tag">Jenkins</span>
+                    <span class="tag">Linux</span>
+                    <span class="tag">Tomcat</span>
+                </div>
+            </div>
+
+            <!-- P9 -->
+            <div class="project-card reveal">
+                <div class="project-header">
+                    <div class="project-title">대신증권 상담프로그램 & 상담메뉴얼 고도화</div>
+                    <span class="project-period">2022.06 — 2022.12</span>
+                </div>
+                <div class="project-body">
+                    <p>상담프로그램 기능 개발과 상담메뉴얼 단독 개발을 수행했습니다.</p>
+                    <ul>
+                        <li>상담프로그램: 상담이력/마이페이지 기능 개발</li>
+                        <li>상담메뉴얼: 에디터 적용 및 메뉴얼 검색 기능 구현</li>
+                        <li>GitLab 기반 협업/형상관리 및 운영 지원</li>
+                    </ul>
+                </div>
+                <div class="tech-tags">
+                    <span class="tag">Spring Boot</span>
+                    <span class="tag">Vue.js</span>
+                    <span class="tag">Tibero</span>
+                    <span class="tag">Redis</span>
+                    <span class="tag">GitLab</span>
                 </div>
             </div>
 
         </div>
-    </section>
-    <!-- Skills Section -->
-    <!--
-    <section id="skills" class="skills-section">
-        <div class="container">
-            <h2 style="font-size: 50px;">Skills</h2>
-          
+    </div>
+</section>
+
+<!-- ─── EDUCATION ─── -->
+<section id="education">
+    <div class="container">
+        <div class="section-header reveal">
+            <div>
+                <span class="section-num">03</span>
+                <h2 class="section-title">Education</h2>
+            </div>
+            <div class="section-line"></div>
         </div>
-    </section>
--->
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-        var developerName = "Developer Choi Young Woo";
-        var index = 0;
-        var speed = 100; // 한 글자 출력 간격 (밀리초)
+        <!-- Dev Bootcamp -->
+        <div class="edu-section-card reveal">
+            <div class="edu-section-header">
+                <div class="edu-section-title">(자바/스프링 기반) 디지털융합 SW전문가 양성과정</div>
+                <div class="edu-section-period">2021.09.30 — 2022.04.04 · 구디 아카데미</div>
+            </div>
+            <div class="edu-section-body">
+                <div class="edu-curriculum">
+                    <div class="edu-curriculum-title">Curriculum</div>
+                    <ul class="edu-curriculum-list">
+                        <li>Web Front-End — HTML, CSS, JavaScript, jQuery, JSP, ES6, React</li>
+                        <li>Database — MariaDB</li>
+                        <li>Web Back-End — Java, JSP, Spring Framework, MyBatis, Spring Advanced</li>
+                        <li>Web Project</li>
+                    </ul>
+                </div>
+                <div class="edu-btn-group">
+                    <a class="edu-btn" href="https://www.gdu.co.kr/community/community_030100.html?bmain=view&uid=111&mode=25" target="_blank">수강 후기 보기</a>
+                    <a class="edu-btn" href="https://www.youtube.com/watch?v=Iu87TySJGS4&t=300s" target="_blank">인터뷰 영상 보기</a>
+                </div>
+            </div>
+        </div>
 
-        function typeWriter() {
-            if (index < developerName.length) {
-                document.getElementById("developer-name").innerHTML += developerName.charAt(index);
-                index++;
-                setTimeout(typeWriter, speed);
+        <!-- 1st Project -->
+        <div class="sub-project reveal">
+            <div class="sub-project-header">
+                <div class="sub-project-title">1st (Semi) Project — Daily Share</div>
+                <div class="sub-project-period">2022.01.03 — 2022.01.18 (16일)</div>
+            </div>
+            <div class="sub-project-body">
+                <div style="display:flex; flex-wrap:wrap; gap:10px; margin-bottom:16px;">
+                    <a href="./img/00_1조 요구사항 정의서(完).xlsx" target="_blank" class="edu-btn">요구사항 정의서</a>
+                    <a href="./img/GDJ42_1.png" target="_blank" class="edu-btn">DB 설계</a>
+                    <a href="./img/Daily Share.pdf" target="_blank" class="edu-btn">PDF</a>
+                    <a href="https://github.com/cyw4328/DailyShare" target="_blank" class="edu-btn">GitHub</a>
+                </div>
+
+                <div class="sub-section-label">Subject</div>
+                <p>Daily Share — 개인 블로그 사이트</p>
+
+                <div class="sub-section-label">Content</div>
+                <p>개인의 정보를 공유할 수 있는 블로그 사이트입니다. 게시글 공개범위에 따라 댓글/대댓글 소통이 가능하며, 공감수/최신순 노출, 카테고리별 게시글 리스트, 마이페이지, 관리자 기능을 구현하였습니다.</p>
+
+                <div class="sub-section-label">Responsibilities</div>
+                <ul>
+                    <li><strong>팀장</strong> — 일정 관리, 담당 업무 배치, 코드 관리</li>
+                    <li><strong>검색 기능</strong> — 분류 기반 전체 게시글 검색</li>
+                    <li><strong>리스트 기능</strong> — 공개 범위 전체 게시글 나열</li>
+                    <li><strong>카테고리/메뉴</strong> — 대분류/중분류/개인 메뉴 추가·삭제 및 게시글 블라인드 처리</li>
+                    <li><strong>신고 기능</strong> — 항목별 신고 처리</li>
+                    <li><strong>MY PAGE</strong> — 내 정보 수정, 구독 관계, 알림, 게시글/댓글 관리</li>
+                </ul>
+
+                <div class="sub-section-label">Skills</div>
+                <div class="skill-group-label">Front-End</div>
+                <div class="skill-icons">
+                    <img src="./img/HTML 5.PNG" alt="HTML5"/>
+                    <img src="./img/CSS 3.PNG" alt="CSS3"/>
+                    <img src="./img/JS.PNG" alt="JavaScript"/>
+                    <img src="./img/J-Query.PNG" alt="jQuery"/>
+                </div>
+                <div class="skill-group-label">Database</div>
+                <div class="skill-icons">
+                    <img src="./img/DBever.PNG" alt="DBeaver"/>
+                    <img src="./img/Maria DB.PNG" alt="MariaDB"/>
+                </div>
+                <div class="skill-group-label">Back-End</div>
+                <div class="skill-icons">
+                    <img src="./img/java.PNG" alt="Java"/>
+                    <img src="./img/myBatis.PNG" alt="MyBatis"/>
+                    <img src="./img/Spring.PNG" alt="Spring"/>
+                    <img src="./img/Tomcat.PNG" alt="Tomcat"/>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2nd Project -->
+        <div class="sub-project reveal">
+            <div class="sub-project-header">
+                <div class="sub-project-title">2nd (Final) Project — PrettyDog</div>
+                <div class="sub-project-period">2022.02.21 — 2022.03.25 (33일)</div>
+            </div>
+            <div class="sub-project-body">
+                <div style="display:flex; flex-wrap:wrap; gap:10px; margin-bottom:16px;">
+                    <a href="./img/00_1조 요구사항 정의서.xlsx" target="_blank" class="edu-btn">요구사항 정의서</a>
+                    <a href="./img/1조_ERD (1).png" target="_blank" class="edu-btn">DB 설계</a>
+                    <a href="./img/GDJ42기 2차프로젝트 1조 발표자료.pdf" target="_blank" class="edu-btn">PDF</a>
+                    <a href="https://github.com/cyw4328/PrettyDog" target="_blank" class="edu-btn">GitHub</a>
+                    <a href="./img/1조 테스트내역서.xlsx" target="_blank" class="edu-btn">테스트 내역서</a>
+                    <a href="./img/발표영상.mp4" target="_blank" class="edu-btn">발표 영상</a>
+                </div>
+
+                <div class="sub-section-label">Subject</div>
+                <p>PrettyDog — 애견 미용 예약 플랫폼</p>
+
+                <div class="sub-section-label">Content</div>
+                <p>애견 미용 서비스 예약 플랫폼입니다. 업주회원이 등록한 매장 정보를 기반으로 일반회원이 미용 서비스를 예약하고 포인트로 결제할 수 있으며, 지역/서비스 종류 필터, 가격순/추천순 정렬을 지원합니다.</p>
+
+                <div class="sub-section-label">Responsibilities</div>
+                <ul>
+                    <li><strong>팀장</strong> — 일정 관리, 업무 배치, 코드 관리, 전체 설계</li>
+                    <li><strong>포인트</strong> — 예약 상태에 따른 충전·환전·결제 이동 기능</li>
+                    <li><strong>마이 페이지</strong> — 포인트 상태 변경, 게시글/댓글 관리, 알림, 관심매장, 예약 상태 변경</li>
+                    <li><strong>관리자</strong> — 신고 설정/처리, 커뮤니티 카테고리, 추가 서비스 항목 설정</li>
+                    <li><strong>예약</strong> — 예약 상태 변경 기능</li>
+                    <li><strong>로그인/계정 찾기</strong> — 암호화 기반 아이디·비밀번호 찾기</li>
+                </ul>
+
+                <div class="sub-section-label">Skills</div>
+                <div class="skill-group-label">Front-End</div>
+                <div class="skill-icons">
+                    <img src="./img/HTML 5.PNG" alt="HTML5"/>
+                    <img src="./img/CSS 3.PNG" alt="CSS3"/>
+                    <img src="./img/JS.PNG" alt="JavaScript"/>
+                    <img src="./img/J-Query.PNG" alt="jQuery"/>
+                    <img src="./img/reactJS.PNG" alt="React"/>
+                </div>
+                <div class="skill-group-label">Database</div>
+                <div class="skill-icons">
+                    <img src="./img/DBever.PNG" alt="DBeaver"/>
+                    <img src="./img/Maria DB.PNG" alt="MariaDB"/>
+                </div>
+                <div class="skill-group-label">Back-End</div>
+                <div class="skill-icons">
+                    <img src="./img/java.PNG" alt="Java"/>
+                    <img src="./img/myBatis.PNG" alt="MyBatis"/>
+                    <img src="./img/Spring.PNG" alt="Spring"/>
+                    <img src="./img/Tomcat.PNG" alt="Tomcat"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+    <p>© 2025 Choi Young Woo · <a href="mailto:cyw4328@naver.com">cyw4328@naver.com</a></p>
+</footer>
+
+<script>
+    /* ── NAV scroll effect ── */
+    const nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', () => {
+        nav.classList.toggle('scrolled', window.scrollY > 30);
+    });
+
+    /* ── Typing animation ── */
+    (function () {
+        const text = 'Choi Young Woo';
+        const el = document.getElementById('typed-text');
+        const sub = document.getElementById('home-sub');
+        const div = document.getElementById('home-divider');
+        const lnk = document.getElementById('home-links');
+        let i = 0;
+
+        function type() {
+            if (i < text.length) {
+                el.textContent += text.charAt(i++);
+                setTimeout(type, i === 1 ? 400 : 90 + Math.random() * 40);
+            } else {
+                // done typing — reveal sub elements
+                sub.classList.add('visible');
+                div.classList.add('visible');
+                lnk.classList.add('visible');
             }
         }
 
-        typeWriter();
+        setTimeout(type, 900);
+    })();
 
-        // 메뉴 클릭 시 해당 섹션으로 스크롤
-        document.querySelectorAll('nav a').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href').substring(1);
-                const targetSection = document.getElementById(targetId);
-                window.scrollTo({
-                    top: targetSection.offsetTop,
-                    behavior: 'smooth'
-                });
-            });
+    /* ── Smooth scroll ── */
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+            const target = document.querySelector(a.getAttribute('href'));
+            if (!target) return;
+            e.preventDefault();
+            const offset = target.getBoundingClientRect().top + window.scrollY - 80;
+            window.scrollTo({ top: offset, behavior: 'smooth' });
         });
     });
-    window.onload = function(){
-        setTimeout(function(){
-            scrollTo(0,0);
-        },100);
-    }
 
-    function text(){
-                window.location.href="https://www.gdu.co.kr/community/community_030100.html?bmain=view&uid=111&mode=25";
+    /* ── Scroll reveal ── */
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('in-view');
+                observer.unobserve(entry.target);
             }
-            function video(){
-                window.location.href="https://www.youtube.com/watch?v=Iu87TySJGS4&t=300s";
-            }
-    </script>
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    /* ── Reset scroll position ── */
+    window.addEventListener('load', () => setTimeout(() => window.scrollTo(0, 0), 50));
+</script>
 </body>
 </html>
